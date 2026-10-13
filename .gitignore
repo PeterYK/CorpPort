@@ -1,0 +1,16 @@
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Build
+build/
+DerivedData/
+
+# macOS
+.DS_Store
+
+# Other
+*.ipa
+*.dSYM
