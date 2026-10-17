@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct UsefulInfoView: View {
-    @Environment(AppState.self) var appState
-    
+    @Environment(AppRouter.self) var router
+
     // Демо-данные
     private let articles = [
         InfoArticle(
@@ -27,11 +27,9 @@ struct UsefulInfoView: View {
     ]
     
     var body: some View {
-        @Bindable var appState = appState
-        
         List(articles) { article in
             Button {
-                appState.infoPath.append(InfoRoute.article(article))
+                router.infoPath.append(InfoRoute.article(article))
             } label: {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(article.title)

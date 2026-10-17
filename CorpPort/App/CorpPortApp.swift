@@ -11,11 +11,15 @@ import SwiftData
 @main
 struct CorporatePortalApp: App {
     private let configurator = Configurator()
-    @State private var appState = AppState()
+    @State private var appState: AppState
+    @State private var appRouter: AppRouter
     @State private var rootStore: RootStore
 
     init() {
         let appState = AppState()
+        let appRouter = AppRouter()
+        
+        _appRouter = State(initialValue: appRouter)
         _appState = State(initialValue: appState)
         _rootStore = State(initialValue: RootStore(appState: appState))
     }
@@ -23,6 +27,7 @@ struct CorporatePortalApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(appRouter)
                 .environment(appState)
                 .environment(rootStore)
         }

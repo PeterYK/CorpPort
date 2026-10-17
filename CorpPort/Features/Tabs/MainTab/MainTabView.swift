@@ -8,24 +8,25 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @Environment(AppState.self) var appState
+    @Environment(AppRouter.self) var router
     
     var body: some View {
-        @Bindable var appState = appState
+        @Bindable var router = router
         
-        TabView(selection: $appState.selectedTab) {
-            NavigationStack(path: $appState.wallPath) {
+        TabView(selection: $router.selectedTab) {
+            NavigationStack(path: $router.wallPath) {
                 WallView()
                     .navigationDestination(for: WallRoute.self) { route in
                         switch route {
                         case .post(let post):
                             WallPostView(post: post)
                         }
-                    }            }
+                    }
+            }
             .tabItem { Label("Стена", systemImage: "newspaper") }
             .tag(Tab.wall)
             
-            NavigationStack(path: $appState.employeesPath) {
+            NavigationStack(path: $router.employeesPath) {
                 TeamsEmployeesView()
                     .navigationDestination(for: EmployeesRoute.self) { route in
                         switch route {
@@ -37,7 +38,7 @@ struct MainTabView: View {
                         switch route {
                         case .team(let team):
                             TeamView(team: team) { employee in
-                                appState.employeesPath.append(EmployeesRoute.employee(employee))
+                                router.employeesPath.append(EmployeesRoute.employee(employee))
                             }
                         }
                     }
@@ -45,18 +46,7 @@ struct MainTabView: View {
             .tabItem { Label("Коллеги", systemImage: "person.3") }
             .tag(Tab.employees)
             
-            NavigationStack(path: $appState.infoPath) {
-                UsefulInfoView()
-                    .navigationDestination(for: InfoRoute.self) { route in
-                        switch route {
-                        case .article(let article):
-                            InfoArticleView(article: article)
-                        }
-                    }            }
-            .tabItem { Label("Инфо", systemImage: "info.circle") }
-            .tag(Tab.info)
-            
-            NavigationStack(path: $appState.profilePath) {
+            NavigationStack(path: $router.profilePath) {
                 ProfileView()
                     .navigationDestination(for: ProfileRoute.self) { route in
                         switch route {
@@ -64,8 +54,8 @@ struct MainTabView: View {
                             TimeAllocationView()
                         case .myTeam(let team):
                             TeamView(team: team) { employee in
-                                    appState.profilePath.append(ProfileRoute.employee(employee))
-                                }
+                                router.profilePath.append(ProfileRoute.employee(employee))
+                            }
                         case .employee(let employee):
                             EmployeeView(employee: employee)
                         }
@@ -73,8 +63,18 @@ struct MainTabView: View {
             }
             .tabItem { Label("Кабинет", systemImage: "person.circle") }
             .tag(Tab.profile)
-            .badge(3)
             
+            NavigationStack(path: $router.infoPath) {
+                UsefulInfoView()
+                    .navigationDestination(for: InfoRoute.self) { route in
+                        switch route {
+                        case .article(let article):
+                            InfoArticleView(article: article)
+                        }
+                    }
+            }
+            .tabItem { Label("Инфо", systemImage: "info.circle") }
+            .tag(Tab.info)
         }
     }
 }

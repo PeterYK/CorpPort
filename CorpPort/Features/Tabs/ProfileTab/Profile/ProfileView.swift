@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(AppState.self) var appState
-    
+    @Environment(AppRouter.self) var router
+
     // отладочные данные-данные
     private let fullName = "Иван Иванов"
     private let role = "iOS-разработчик"
@@ -32,17 +33,17 @@ struct ProfileView: View {
     private let email = "ivan.ivanov@company.com"
     
     var body: some View {
-        @Bindable var appState = appState
+//        @Bindable var appState = appState
         
         ScrollView {
             VStack(spacing: 24) {
                 // Плитки-кнопки
                 HStack(spacing: 16) {
                     tileButton(title: "ТРЗ", icon: "calendar", badge: 3) {
-                        appState.profilePath.append(ProfileRoute.timeAllocation)
+                        router.profilePath.append(ProfileRoute.timeAllocation)
                     }
                     tileButton(title: "Моя команда", icon: "person.3") {
-                        appState.profilePath.append(ProfileRoute.myTeam(team))
+                        router.profilePath.append(ProfileRoute.myTeam(team))
                     }
                 }
                 .padding(.horizontal)
@@ -75,7 +76,7 @@ struct ProfileView: View {
                     
                     // Интерактивная команда
                     Button {
-                        appState.profilePath.append(ProfileRoute.myTeam(team))
+                        router.profilePath.append(ProfileRoute.myTeam(team))
                     } label: {
                         infoRow(title: "Команда", value: team.name, isInteractive: true)
                     }
@@ -83,7 +84,7 @@ struct ProfileView: View {
                     
                     // Интерактивный руководитель
                     Button {
-                        appState.profilePath.append(ProfileRoute.employee(manager))
+                        router.profilePath.append(ProfileRoute.employee(manager))
                     } label: {
                         infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
                     }
@@ -100,7 +101,7 @@ struct ProfileView: View {
                 // Выход
                 Button("Выйти") {
                     appState.isAuthenticated = false
-                    appState.profilePath = NavigationPath()
+                    router.resetAllPaths()
                 }
                 .foregroundStyle(.red)
                 .padding(.top, 20)

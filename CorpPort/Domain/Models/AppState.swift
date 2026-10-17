@@ -10,13 +10,13 @@ import SwiftUI
 @Observable
 class AppState {
     var isAuthenticated = false
-    var selectedTab: Tab = .wall
-    
-    var wallPath = NavigationPath()
-    var teamsPath = NavigationPath()
-    var employeesPath = NavigationPath()
-    var profilePath = NavigationPath()
-    var infoPath = NavigationPath()
+//    var selectedTab: Tab = .wall
+//    
+//    var wallPath = NavigationPath()
+//    var teamsPath = NavigationPath()
+//    var employeesPath = NavigationPath()
+//    var profilePath = NavigationPath()
+//    var infoPath = NavigationPath()
 }
 
 enum Tab: Hashable {

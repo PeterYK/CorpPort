@@ -7,42 +7,6 @@
 
 import Foundation
 
-//@Observable
-//final class LoginStore {
-//    @Environment(AppState.self) var appState
-//
-//    var login = ""
-//    var password = ""
-//    var isLoading = false
-//    var errorMessage: String?
-//    
-////    var onLoginSuccess: (() -> Void)?
-//    
-//    func dispatch(_ action: LoginActions) {
-//        switch action {
-//        case .loginChanged(let value):
-//            login = value
-//        case .passwordChanged(let value):
-//            password = value
-//        case .loginTapped:
-//            performLogin()
-//        case .loginSucceeded:
-//            isLoading = false
-////            onLoginSuccess?()
-//            
-//        case .loginFailed(let message):
-//            isLoading = false
-//            errorMessage = message
-//        }
-//    }
-//    
-//    private func performLogin() {
-//        isLoading = true
-//        errorMessage = nil
-//        // пока без реальной проверки
-//        dispatch(.loginSucceeded)
-//    }
-//}
 @Observable
 final class LoginStore {
     private let appState: AppState

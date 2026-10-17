@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TeamsView: View {
-    @Environment(AppState.self) var appState
+    @Environment(AppRouter.self) var router
     
     private let teams = [
         Team(
@@ -71,13 +71,12 @@ struct TeamsView: View {
     ]
     
     var body: some View {
-        @Bindable var appState = appState
         
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(teams) { team in
                     Button {
-                        appState.employeesPath.append(TeamsRoute.team(team))
+                        router.employeesPath.append(TeamsRoute.team(team))
                     } label: {
                         TeamCell(team: team)
                     }

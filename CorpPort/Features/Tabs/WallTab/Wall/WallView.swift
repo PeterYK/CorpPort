@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct WallView: View {
-    @Environment(AppState.self) var appState
+    @Environment(AppRouter.self) var router
+
     @State private var selectedTag: String? = nil
     
     // Демо-данные
@@ -29,7 +30,6 @@ struct WallView: View {
     }
     
     var body: some View {
-        @Bindable var appState = appState
         
         VStack(spacing: 0) {
             // Теги
@@ -52,7 +52,7 @@ struct WallView: View {
             // Список постов
             List(filteredPosts) { post in
                 Button {
-                    appState.wallPath.append(WallRoute.post(post))
+                    router.wallPath.append(WallRoute.post(post))
                 } label: {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(post.tag)

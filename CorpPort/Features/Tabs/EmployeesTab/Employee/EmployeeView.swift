@@ -10,10 +10,9 @@ import SwiftUI
 struct EmployeeView: View {
     let employee: Employee
     @Environment(AppState.self) var appState
-    
+    @Environment(AppRouter.self) var appRouter
+
     var body: some View {
-        @Bindable var appState = appState
-        
         ScrollView {
             VStack(spacing: 24) {
                 // Аватар + ФИО
@@ -56,7 +55,7 @@ struct EmployeeView: View {
                                     Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
                                 ]
                             )
-                             appState.employeesPath.append(TeamsRoute.team(someTeam))
+                             appRouter.employeesPath.append(TeamsRoute.team(someTeam))
                         } label: {
                             infoRow(title: "Команда", value: teamName, isInteractive: true)
                         }
@@ -66,7 +65,7 @@ struct EmployeeView: View {
                     // Руководитель (интерактивный)
                     if let manager = employee.manager {
                         Button {
-                            appState.employeesPath.append(EmployeesRoute.employee(manager))
+                            appRouter.employeesPath.append(EmployeesRoute.employee(manager))
                         } label: {
                             infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
                         }
