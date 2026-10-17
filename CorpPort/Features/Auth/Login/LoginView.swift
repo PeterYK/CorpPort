@@ -8,28 +8,35 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Environment(AppState.self) var appState
-    @State private var login = ""
-    @State private var password = ""
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Вход в портал")
-                .font(.largeTitle.bold())
+        let store = rootStore.loginStore
+        
+        VStack(spacing: 16) {
+            TextField("Логин", text: Binding(
+                get: { store.login },
+                set: { store.dispatch(.loginChanged($0)) }
+            ))
+            .textFieldStyle(.roundedBorder)
             
-            TextField("Логин", text: $login)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
+            SecureField("Пароль", text: Binding(
+                get: { store.password },
+                set: { store.dispatch(.passwordChanged($0)) }
+            ))
+            .textFieldStyle(.roundedBorder)
             
-            SecureField("Пароль", text: $password)
-                .textFieldStyle(.roundedBorder)
+            if let error = store.errorMessage {
+                Text(error)
+                    .foregroundStyle(.red)
+                    .font(.caption)
+            }
             
             Button("Войти") {
-                // Пока без проверки — просто входим
-                appState.isAuthenticated = true
+                store.dispatch(.loginTapped)
             }
             .buttonStyle(.borderedProminent)
-            .disabled(login.isEmpty || password.isEmpty)
+            .disabled(store.isLoading || store.login.isEmpty || store.password.isEmpty)
         }
         .padding()
     }
