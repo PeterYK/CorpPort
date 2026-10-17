@@ -11,7 +11,7 @@ struct Team: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let description: String
-    let mascotIcon: String          // SF Symbol для маскота
+    let mascotIcon: String
     let leaders: [Employee]
     let members: [Employee]
 }

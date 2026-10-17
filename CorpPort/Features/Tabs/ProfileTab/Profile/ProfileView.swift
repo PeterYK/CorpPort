@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @Environment(AppState.self) var appState
     
-    // Демо-данные
+    // отладочные данные-данные
     private let fullName = "Иван Иванов"
     private let role = "iOS-разработчик"
     private let team =  Team(

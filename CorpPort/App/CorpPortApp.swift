@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct CorporatePortalApp: App {
+    private let configurator = Configurator()
     @State private var appState = AppState()
     
     var body: some Scene {

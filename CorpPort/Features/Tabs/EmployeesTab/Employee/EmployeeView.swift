@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-//struct EmployeeView: View {
-//    let employee: Employee
-//    
-//    var body: some View {
-//        VStack(spacing: 16) {
-//            Text(employee.name)
-//                .font(.title.bold())
-//            Text(employee.position)
-//                .font(.title3)
-//                .foregroundStyle(.secondary)
-//        }
-//        .navigationTitle("Сотрудник")
-//        .navigationBarTitleDisplayMode(.inline)
-//    }
-//}
-
 struct EmployeeView: View {
     let employee: Employee
     @Environment(AppState.self) var appState
