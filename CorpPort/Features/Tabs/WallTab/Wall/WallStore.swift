@@ -9,17 +9,15 @@ import SwiftUI
 
 @Observable
 final class WallStore {
-    
+    @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
+
     private var router: AppRouter
     var selectedTag: String? = nil
 
-    // Демо-данные
-    private let allPosts: [WallPost] = [
-        WallPost(tag: "Новости", title: "Запуск нового продукта", content: "Мы рады сообщить о запуске нового корпоративного продукта. Подробности внутри.", company: "ООО \"Технологии\""),
-        WallPost(tag: "Мероприятия", title: "Корпоратив в эту пятницу", content: "Приглашаем всех на корпоратив. Будет интересно!", company: "ООО \"Технологии\""),
-        WallPost(tag: "Новости", title: "Обновление политик", content: "Ознакомьтесь с обновлёнными внутренними политиками компании.", company: "ООО \"Технологии\""),
-        WallPost(tag: "Сезонное", title: "Летний график работы", content: "С 1 июня действует летний график. Подробности в посте.", company: "ООО \"Технологии\"")
-    ]
+    // TODO: Демо-данные
+    private var allPosts: [WallPost] {
+        dataService.wallPosts
+    }
     
     var tags: [String] {
         Array(Set(allPosts.map { $0.tag })).sorted()
@@ -46,5 +44,4 @@ final class WallStore {
             }
         }
     }
-    
 }

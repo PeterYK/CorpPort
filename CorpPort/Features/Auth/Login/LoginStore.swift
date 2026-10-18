@@ -5,10 +5,13 @@
 //  Created by Peter Kozlov on 17.10.2026.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 final class LoginStore {
+    @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
+    @ObservationIgnored private var NetworkService: NetworkService = ServiceLocator.shared.getService()
+
     private let appState: AppState
     
     var login = ""
@@ -47,9 +50,18 @@ final class LoginStore {
         isLoading = true
         errorMessage = nil
         
-        // Пока без реальной проверки
+        // TODO: Пока без реальной проверки
         Task {
-            dispatch(.loginSucceeded)
+            do {
+                try await dataService.loadAllData()
+                await MainActor.run {
+                    dispatch(.loginSucceeded)
+                }
+            } catch {
+                await MainActor.run {
+                    dispatch(.loginFailed("Не удалось загрузить данные"))
+                }
+            }
         }
     }
 }

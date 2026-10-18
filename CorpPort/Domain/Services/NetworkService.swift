@@ -7,4 +7,9 @@
 
 import Foundation
 
-protocol NetworkService { }
+protocol NetworkService {
+    func fetchEmployees() async throws -> [EmployeeDTO]
+    func fetchTeams() async throws -> [TeamDTO]
+    func fetchWallPosts() async throws -> [WallPostDTO]
+    func fetchInfoArticles() async throws -> [InfoArticleDTO]
+}

@@ -7,4 +7,11 @@
 
 import Foundation
 
-protocol DataService { }
+protocol DataService {
+    var employees: [Employee] { get }
+    var teams: [Team] { get }
+    var wallPosts: [WallPost] { get }
+    var infoArticles: [InfoArticle] { get }
+    
+    func loadAllData() async throws
+}

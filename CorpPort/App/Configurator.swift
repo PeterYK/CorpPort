@@ -20,13 +20,14 @@ class Configurator {
     }
     
     private func registerServices() {
-        if isDebug {
-            serviceLocator.addService(NetworkService.self, service: MocNetworkService())
-        } else {
-            serviceLocator.addService(NetworkService.self, service: AppNetworkService())
-        }
+        let networkService: NetworkService = isDebug
+        ? MockNetworkService()
+        : AppNetworkService()
         
+        serviceLocator.addService(NetworkService.self, service: networkService)
         serviceLocator.addService(KeychainService.self, service: AppKeychainService())
-        serviceLocator.addService(DataService.self, service: AppDataService())
+        
+        let dataService = AppDataService(networkService: networkService)
+        serviceLocator.addService(DataService.self, service: dataService)
     }
 }

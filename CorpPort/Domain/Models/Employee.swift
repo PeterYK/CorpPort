@@ -11,11 +11,12 @@ final class Employee: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let position: String
-    let team: Team?
+    var team: Team?
     var manager: Employee?
     let city: String?
     let birthday: String?
     let email: String?
+    let tg: String?
     
     init(
         name: String,
@@ -24,7 +25,9 @@ final class Employee: Identifiable, Hashable {
         manager: Employee? = nil,
         city: String? = nil,
         birthday: String? = nil,
-        email: String? = nil
+        email: String? = nil,
+        tg: String? = nil
+        
     ) {
         self.name = name
         self.position = position
@@ -33,6 +36,7 @@ final class Employee: Identifiable, Hashable {
         self.city = city
         self.birthday = birthday
         self.email = email
+        self.tg = tg
     }
     
     static func == (lhs: Employee, rhs: Employee) -> Bool {

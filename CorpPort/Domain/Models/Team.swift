@@ -12,6 +12,6 @@ struct Team: Identifiable, Hashable {
     let name: String
     let description: String
     let mascotIcon: String
-    let leaders: [Employee]
-    let members: [Employee]
+    var leaders: [Employee]
+    var members: [Employee]
 }
