@@ -8,26 +8,7 @@
 import SwiftUI
 
 struct WallView: View {
-    @Environment(AppRouter.self) var router
-
-    @State private var selectedTag: String? = nil
-    
-    // Демо-данные
-    private let allPosts: [WallPost] = [
-        WallPost(tag: "Новости", title: "Запуск нового продукта", content: "Мы рады сообщить о запуске нового корпоративного продукта. Подробности внутри.", company: "ООО \"Технологии\""),
-        WallPost(tag: "Мероприятия", title: "Корпоратив в эту пятницу", content: "Приглашаем всех на корпоратив. Будет интересно!", company: "ООО \"Технологии\""),
-        WallPost(tag: "Новости", title: "Обновление политик", content: "Ознакомьтесь с обновлёнными внутренними политиками компании.", company: "ООО \"Технологии\""),
-        WallPost(tag: "Сезонное", title: "Летний график работы", content: "С 1 июня действует летний график. Подробности в посте.", company: "ООО \"Технологии\"")
-    ]
-    
-    private var tags: [String] {
-        Array(Set(allPosts.map { $0.tag })).sorted()
-    }
-    
-    private var filteredPosts: [WallPost] {
-        guard let selectedTag else { return allPosts }
-        return allPosts.filter { $0.tag == selectedTag }
-    }
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         
@@ -35,13 +16,13 @@ struct WallView: View {
             // Теги
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    tagButton(title: "Все", isSelected: selectedTag == nil) {
-                        selectedTag = nil
+                    tagButton(title: "Все", isSelected: rootStore.wallStore.selectedTag == nil) {
+                        rootStore.wallStore.dispatch(.selectTag(nil))
                     }
                     
-                    ForEach(tags, id: \.self) { tag in
-                        tagButton(title: tag, isSelected: selectedTag == tag) {
-                            selectedTag = tag
+                    ForEach(rootStore.wallStore.tags, id: \.self) { tag in
+                        tagButton(title: tag, isSelected: rootStore.wallStore.selectedTag == tag) {
+                            rootStore.wallStore.dispatch(.selectTag(tag))
                         }
                     }
                 }
@@ -50,9 +31,9 @@ struct WallView: View {
             }
             
             // Список постов
-            List(filteredPosts) { post in
+            List(rootStore.wallStore.filteredPosts) { post in
                 Button {
-                    router.wallPath.append(WallRoute.post(post))
+                    rootStore.wallStore.dispatch(.postTapped(post))
                 } label: {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(post.tag)

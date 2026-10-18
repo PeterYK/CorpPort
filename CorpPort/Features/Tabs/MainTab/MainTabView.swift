@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @Environment(RootStore.self) var rootStore
     @Environment(AppRouter.self) var router
     
     var body: some View {
@@ -37,9 +38,7 @@ struct MainTabView: View {
                     .navigationDestination(for: TeamsRoute.self) { route in
                         switch route {
                         case .team(let team):
-                            TeamView(team: team) { employee in
-                                router.employeesPath.append(EmployeesRoute.employee(employee))
-                            }
+                            TeamView(team: team, tab: .employees, rootStore: rootStore)
                         }
                     }
             }
@@ -53,9 +52,7 @@ struct MainTabView: View {
                         case .timeAllocation:
                             TimeAllocationView()
                         case .myTeam(let team):
-                            TeamView(team: team) { employee in
-                                router.profilePath.append(ProfileRoute.employee(employee))
-                            }
+                            TeamView(team: team, tab: .profile, rootStore: rootStore)
                         case .employee(let employee):
                             EmployeeView(employee: employee)
                         }

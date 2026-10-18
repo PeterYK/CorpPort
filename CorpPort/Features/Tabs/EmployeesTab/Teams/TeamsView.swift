@@ -8,75 +8,15 @@
 import SwiftUI
 
 struct TeamsView: View {
-    @Environment(AppRouter.self) var router
-    
-    private let teams = [
-        Team(
-            name: "Mobile",
-            description: "Команда разработки мобильных приложений. Делаем iOS и Android клиенты корпоративного портала.",
-            mascotIcon: "iphone",
-            leaders: [
-                Employee(name: "Алексей Смирнов", position: "Team Lead")
-            ],
-            members: [
-                Employee(name: "Иван Иванов", position: "iOS-разработчик"),
-                Employee(name: "Мария Петрова", position: "Дизайнер"),
-                Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
-            ]
-        ),
-        Team(
-            name: "Mobile",
-            description: "Команда разработки мобильных приложений. Делаем iOS и Android клиенты корпоративного портала.",
-            mascotIcon: "iphone",
-            leaders: [
-                Employee(name: "Алексей Смирнов", position: "Team Lead")
-            ],
-            members: [
-                Employee(name: "Иван Иванов", position: "iOS-разработчик"),
-                Employee(name: "Мария Петрова", position: "Дизайнер"),
-                Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
-            ]
-        ),
-        Team(
-            name: "Mobile",
-            description: "Команда разработки мобильных приложений. Делаем iOS и Android клиенты корпоративного портала.",
-            mascotIcon: "iphone",
-            leaders: [
-                Employee(name: "Алексей Смирнов", position: "Team Lead")
-            ],
-            members: [
-                Employee(name: "Иван Иванов", position: "iOS-разработчик"),
-                Employee(name: "Мария Петрова", position: "Дизайнер"),
-                Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
-            ]
-        ),
-        Team(
-            name: "Mobile",
-            description: "Команда разработки мобильных приложений. Делаем iOS и Android клиенты корпоративного портала.",
-            mascotIcon: "iphone",
-            leaders: [
-                Employee(name: "Алексей Смирнов", position: "Team Lead")
-            ],
-            members: [
-                Employee(name: "Иван Иванов", position: "iOS-разработчик"),
-                Employee(name: "Мария Петрова", position: "Дизайнер"),
-                Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
-            ]
-        ),
-    ]
-    
-    private let columns = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
-    ]
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
         
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(teams) { team in
+            LazyVGrid(columns: rootStore.teamsStore.columns, spacing: 16) {
+                ForEach(rootStore.teamsStore.teams) { team in
                     Button {
-                        router.employeesPath.append(TeamsRoute.team(team))
+                        rootStore.teamsStore.dispatch(.teamTapped(team))
                     } label: {
                         TeamCell(team: team)
                     }

@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct TeamView: View {
-    let team: Team
-    
-    var onEmployeeTap: (Employee) -> Void
-    
-    @Environment(AppState.self) var appState
+    let teamStore: TeamStore
+    init(team: Team, tab: Tab, rootStore: RootStore) {
+        self.teamStore = rootStore.makeTeamStore(team: team, tab: tab)
+    }
     
     var body: some View {
-        @Bindable var appState = appState
         
         ScrollView {
             VStack(spacing: 24) {
@@ -25,15 +23,15 @@ struct TeamView: View {
                         .fill(Color.blue.opacity(0.15))
                         .frame(width: 100, height: 100)
                         .overlay {
-                            Image(systemName: team.mascotIcon)
+                            Image(systemName: teamStore.team.mascotIcon)
                                 .font(.system(size: 44))
                                 .foregroundStyle(.blue)
                         }
                     
-                    Text(team.name)
+                    Text(teamStore.team.name)
                         .font(.title.bold())
                     
-                    Text(team.description)
+                    Text(teamStore.team.description)
                         .font(.body)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -42,11 +40,11 @@ struct TeamView: View {
                 .padding(.top)
                 
                 // Руководители
-                if !team.leaders.isEmpty {
-                    section(title: team.leaders.count > 1 ? "Руководители" : "Руководитель") {
-                        ForEach(team.leaders) { leader in
+                if !teamStore.team.leaders.isEmpty {
+                    section(title: teamStore.team.leaders.count > 1 ? "Руководители" : "Руководитель") {
+                        ForEach(teamStore.team.leaders) { leader in
                             Button {
-                                onEmployeeTap(leader)
+                                teamStore.dispatch(.employeeTapped(leader))
                             } label: {
                                 EmployeeRow(employee: leader)
                             }
@@ -56,11 +54,11 @@ struct TeamView: View {
                 }
                 
                 // Участники
-                if !team.members.isEmpty {
+                if !teamStore.team.members.isEmpty {
                     section(title: "Участники") {
-                        ForEach(team.members) { member in
+                        ForEach(teamStore.team.members) { member in
                             Button {
-                                onEmployeeTap(member)
+                                teamStore.dispatch(.employeeTapped(member))
                             } label: {
                                 EmployeeRow(employee: member)
                             }
@@ -70,7 +68,7 @@ struct TeamView: View {
                 }
             }
         }
-        .navigationTitle(team.name)
+        .navigationTitle(teamStore.team.name)
         .navigationBarTitleDisplayMode(.inline)
     }
     

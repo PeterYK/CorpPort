@@ -21,7 +21,7 @@ struct CorporatePortalApp: App {
         
         _appRouter = State(initialValue: appRouter)
         _appState = State(initialValue: appState)
-        _rootStore = State(initialValue: RootStore(appState: appState))
+        _rootStore = State(initialValue: RootStore(appState: appState, router: appRouter))
     }
     
     var body: some Scene {

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum TeamsActions {
+    case teamTapped(Team)
+}

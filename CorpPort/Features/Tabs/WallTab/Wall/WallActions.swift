@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum WallActions {
+    case postTapped(WallPost)
+    case selectTag(String?)
+}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmployeesView: View {
-    @Environment(AppRouter.self) var router
+    @Environment(RootStore.self) var rootStore
 
     private let employees = [
         Employee(name: "Иван Иванов", position: "iOS-разработчик"),
@@ -20,7 +20,7 @@ struct EmployeesView: View {
     var body: some View {        
         List(employees) { employee in
             Button {
-                router.employeesPath.append(EmployeesRoute.employee(employee))
+                rootStore.employeesStore.dispatch(.employeeTapped(employee))
             } label: {
                 EmployeeCell(employee: employee)
             }

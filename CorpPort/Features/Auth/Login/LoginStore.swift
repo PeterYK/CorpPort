@@ -33,7 +33,7 @@ final class LoginStore {
             
         case .loginSucceeded:
             isLoading = false
-            appState.isAuthenticated = true          // ← сразу меняем
+            appState.isAuthenticated = true
             
         case .loginFailed(let message):
             isLoading = false

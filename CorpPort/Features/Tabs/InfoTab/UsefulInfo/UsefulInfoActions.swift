@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum UsefulInfoActions {
+    case articleTapped(InfoArticle)
+}

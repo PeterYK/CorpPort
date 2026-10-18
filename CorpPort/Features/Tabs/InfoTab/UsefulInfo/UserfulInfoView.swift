@@ -8,28 +8,12 @@
 import SwiftUI
 
 struct UsefulInfoView: View {
-    @Environment(AppRouter.self) var router
-
-    // Демо-данные
-    private let articles = [
-        InfoArticle(
-            title: "Как оформить отпуск",
-            content: "Для оформления отпуска необходимо подать заявку в HR-портале не менее чем за 2 недели. Согласование происходит через руководителя."
-        ),
-        InfoArticle(
-            title: "Правила удалённой работы",
-            content: "Удалённая работа возможна по согласованию с руководителем. Необходимо быть на связи в рабочие часы и участвовать в ежедневных стендапах."
-        ),
-        InfoArticle(
-            title: "Корпоративные бенефиты",
-            content: "Компания предоставляет ДМС, компенсацию спорта, обучение и другие бенефиты. Подробности можно уточнить в HR."
-        )
-    ]
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
-        List(articles) { article in
+        List(rootStore.infoStore.articles) { article in
             Button {
-                router.infoPath.append(InfoRoute.article(article))
+                rootStore.infoStore.dispatch(.articleTapped(article))
             } label: {
                 VStack(alignment: .leading, spacing: 6) {
                     Text(article.title)
