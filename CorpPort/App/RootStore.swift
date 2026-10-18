@@ -29,4 +29,8 @@ final class RootStore {
     func makeTeamStore(team: Team, tab: Tab) -> TeamStore {
         return TeamStore(team: team, router: router, tab: tab)
     }
+    
+    func makeEmployeeStore(employee: Employee, tab: Tab) -> EmployeeStore {
+        return EmployeeStore(employee: employee, router: router, tab: tab)
+    }
 }

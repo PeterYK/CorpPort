@@ -32,7 +32,7 @@ struct MainTabView: View {
                     .navigationDestination(for: EmployeesRoute.self) { route in
                         switch route {
                         case .employee(let employee):
-                            EmployeeView(employee: employee)
+                            EmployeeView(employee: employee, tab: .employees, rootStore: rootStore)
                         }
                     }
                     .navigationDestination(for: TeamsRoute.self) { route in
@@ -54,7 +54,7 @@ struct MainTabView: View {
                         case .myTeam(let team):
                             TeamView(team: team, tab: .profile, rootStore: rootStore)
                         case .employee(let employee):
-                            EmployeeView(employee: employee)
+                            EmployeeView(employee: employee, tab: .profile, rootStore: rootStore)
                         }
                     }
             }

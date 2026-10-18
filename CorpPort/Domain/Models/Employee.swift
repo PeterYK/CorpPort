@@ -11,7 +11,7 @@ final class Employee: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let position: String
-    let teamName: String?
+    let team: Team?
     var manager: Employee?
     let city: String?
     let birthday: String?
@@ -20,7 +20,7 @@ final class Employee: Identifiable, Hashable {
     init(
         name: String,
         position: String,
-        teamName: String? = nil,
+        team: Team? = nil,
         manager: Employee? = nil,
         city: String? = nil,
         birthday: String? = nil,
@@ -28,7 +28,7 @@ final class Employee: Identifiable, Hashable {
     ) {
         self.name = name
         self.position = position
-        self.teamName = teamName
+        self.team = team
         self.manager = manager
         self.city = city
         self.birthday = birthday

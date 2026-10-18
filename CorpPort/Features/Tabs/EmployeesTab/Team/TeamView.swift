@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TeamView: View {
     let teamStore: TeamStore
+    
     init(team: Team, tab: Tab, rootStore: RootStore) {
         self.teamStore = rootStore.makeTeamStore(team: team, tab: tab)
     }

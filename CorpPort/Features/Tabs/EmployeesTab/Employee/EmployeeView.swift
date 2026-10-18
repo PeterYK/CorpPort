@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct EmployeeView: View {
-    let employee: Employee
-    @Environment(AppState.self) var appState
-    @Environment(AppRouter.self) var appRouter
+    let store: EmployeeStore
 
+    init(employee: Employee, tab: Tab, rootStore: RootStore) {
+        self.store = rootStore.makeEmployeeStore(employee: employee, tab: tab)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
@@ -26,7 +28,7 @@ struct EmployeeView: View {
                                 .foregroundStyle(.gray)
                         }
                     
-                    Text(employee.name)
+                    Text(store.employee.name)
                         .font(.title2.bold())
                         .multilineTextAlignment(.center)
                         .lineLimit(3)
@@ -35,62 +37,80 @@ struct EmployeeView: View {
                 
                 // Информация
                 VStack(alignment: .leading, spacing: 12) {
-                    infoRow(title: "Роль", value: employee.position)
+                    infoRow(title: "Роль", value: store.employee.position)
                     
-                    // Команда (интерактивная)
-                    if let teamName = employee.teamName {
+                    // Команда
+                    if let team = store.employee.team {
                         Button {
-                            // Пример: ищем команду по имени или передаём готовую
-                            // Здесь для демо просто показываем переход
-                            let someTeam = Team(
-                                name: "Mobile",
-                                description: "Команда разработки мобильных приложений. Делаем iOS и Android клиенты корпоративного портала.",
-                                mascotIcon: "iphone",
-                                leaders: [
-                                    Employee(name: "Алексей Смирнов", position: "Team Lead")
-                                ],
-                                members: [
-                                    Employee(name: "Иван Иванов", position: "iOS-разработчик"),
-                                    Employee(name: "Мария Петрова", position: "Дизайнер"),
-                                    Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
-                                ]
-                            )
-                             appRouter.employeesPath.append(TeamsRoute.team(someTeam))
+                            store.dispatch(.teamTapped)
                         } label: {
-                            infoRow(title: "Команда", value: teamName, isInteractive: true)
+                            infoRow(title: "Команда", value: team.name, isInteractive: true)
                         }
                         .buttonStyle(.plain)
                     }
                     
-                    // Руководитель (интерактивный)
-                    if let manager = employee.manager {
+                    // Руководитель
+                    if let manager = store.employee.manager {
                         Button {
-                            appRouter.employeesPath.append(EmployeesRoute.employee(manager))
+                            store.dispatch(.employeeTapped(manager))
                         } label: {
                             infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
                         }
                         .buttonStyle(.plain)
                     }
                     
-                    if let city = employee.city {
+                    if let city = store.employee.city {
                         infoRow(title: "Город", value: city)
                     }
                     
-                    if let birthday = employee.birthday {
+                    if let birthday = store.employee.birthday {
                         infoRow(title: "День рождения", value: birthday)
                     }
                     
-                    if let email = employee.email {
-                        infoRow(title: "Почта", value: email)
+                    // Почта (кликабельная)
+                    if let email = store.employee.email {
+                        Button {
+                            store.dispatch(.emailTapped)
+                        } label: {
+                            infoRow(title: "Почта", value: email, isInteractive: true)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding(.horizontal)
+                
+                // Подчинённые
+                if store.isLeader, let subordinates = store.subordinates, !subordinates.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Подчинённые")
+                            .font(.headline)
+                            .padding(.horizontal)
+                        
+                        VStack(spacing: 0) {
+                            ForEach(subordinates) { subordinate in
+                                Button {
+                                    store.dispatch(.employeeTapped(subordinate))
+                                } label: {
+                                    EmployeeRow(employee: subordinate)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .background(Color.gray.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal)
+                    }
+                }
             }
             .padding(.bottom, 30)
         }
         .navigationTitle("Сотрудник")
         .navigationBarTitleDisplayMode(.inline)
     }
+    
+    // MARK: - Helpers
+    
+
     
     private func infoRow(title: String, value: String, isInteractive: Bool = false) -> some View {
         HStack {
