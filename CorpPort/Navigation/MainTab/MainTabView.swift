@@ -51,6 +51,8 @@ struct MainTabView: View {
                             TeamView(team: team, tab: .profile, rootStore: rootStore)
                         case .employee(let employee):
                             EmployeeView(employee: employee, tab: .profile, rootStore: rootStore)
+                        case .settings:
+                            AppSettingsView()
                         }
                     }
             }

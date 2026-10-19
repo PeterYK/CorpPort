@@ -43,7 +43,8 @@ final class ProfileStore {
         case .logoutTapped:
             appState.isAuthenticated = false
             router.resetAllPaths()
+        case .settingsTapped:
+            router.profilePath.append(ProfileRoute.settings)
         }
     }
-    
 }

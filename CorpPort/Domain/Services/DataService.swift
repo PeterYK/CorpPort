@@ -16,4 +16,5 @@ protocol DataService {
     var projects: [Project] { get }
     
     func loadAllData() async throws
+    func reset()
 }

@@ -36,7 +36,8 @@ final class LoginStore {
         case .loginSucceeded:
             isLoading = false
             appState.isAuthenticated = true
-            
+            login = ""
+            password = ""
         case .loginFailed(let message):
             isLoading = false
             errorMessage = message

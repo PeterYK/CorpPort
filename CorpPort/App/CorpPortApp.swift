@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftData
+//import SwiftData
 
 @main
 struct CorporatePortalApp: App {
@@ -16,7 +16,7 @@ struct CorporatePortalApp: App {
     @State private var rootStore: RootStore
     
     init() {
-        Thread.sleep(forTimeInterval: 3.0)   // TODO - задержка для отображения LaumchScreen
+        Thread.sleep(forTimeInterval: 2.0)   // TODO: - задержка для отображения LaumchScreen
 
         let appState = AppState()
         let appRouter = AppRouter()
@@ -24,6 +24,8 @@ struct CorporatePortalApp: App {
         _appRouter = State(initialValue: appRouter)
         _appState = State(initialValue: appState)
         _rootStore = State(initialValue: RootStore(appState: appState, router: appRouter))
+        
+        setupNotificationHandling(router: appRouter)
     }
     
     var body: some Scene {
@@ -32,6 +34,13 @@ struct CorporatePortalApp: App {
                 .environment(appRouter)
                 .environment(appState)
                 .environment(rootStore)
+        }
+    }
+    
+    private func setupNotificationHandling(router: AppRouter) {
+        var notificationService: NotificationService = ServiceLocator.shared.getService()
+        notificationService.onTRZNotificationTapped = { [weak router] in
+            router?.openTimeAllocations()
         }
     }
 }
