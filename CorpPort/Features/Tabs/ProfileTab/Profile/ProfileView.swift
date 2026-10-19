@@ -16,10 +16,8 @@ struct ProfileView: View {
             ScrollView {
                 VStack(spacing: 24) {
                     HStack(spacing: 16) {
-                        if rootStore.profileStore.missedCount > 0 {
-                            tileButton(title: "ТРЗ", icon: "calendar", badge: rootStore.profileStore.missedCount) {
-                                rootStore.profileStore.dispatch(.timeAllocationTapped)
-                            }
+                        tileButton(title: "ТРЗ", icon: "calendar", badge: rootStore.timeAllocationStore.missedCount) {
+                            rootStore.profileStore.dispatch(.timeAllocationTapped)
                         }
                         tileButton(title: "Моя команда", icon: "person.3") {
                             rootStore.profileStore.dispatch(.teamTapped)

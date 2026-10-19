@@ -24,6 +24,8 @@ final class TimeAllocationStore {
         }
     }
     
+    var missedCount: Int = 0
+    
     init(dataService: DataService, networkService: NetworkService) {
         self.dataService = dataService
         self.networkService = networkService
@@ -33,6 +35,7 @@ final class TimeAllocationStore {
                 ProjectAllocation(project: $0, hours: 0)
             }
         }
+        updateMissedCount()
     }
     
     func dispatch(_ action: TimeAllocationActions) {
@@ -83,6 +86,7 @@ extension TimeAllocationStore {
                 ProjectAllocation(project: $0, hours: 0)
             }
         }
+        updateMissedCount()
     }
     
     private func loadAllocation(for date: Date) async {
@@ -150,5 +154,11 @@ extension TimeAllocationStore {
                 Calendar.current.isDate($0, inSameDayAs: selectedDate)
             }
         }
+        
+        updateMissedCount()
     }
+    
+    private func updateMissedCount() {
+            missedCount = dataService.userProfile?.missedDates.count ?? 0
+        }
 }

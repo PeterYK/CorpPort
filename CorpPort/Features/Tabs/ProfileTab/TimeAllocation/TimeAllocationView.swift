@@ -80,7 +80,7 @@ struct TimeAllocationView: View {
             )
         }
         .task {
-            store.loadFavoriteProjects()
+//            store.loadFavoriteProjects()
             store.dispatch(.selectDate(store.selectedDate))
         }
     }

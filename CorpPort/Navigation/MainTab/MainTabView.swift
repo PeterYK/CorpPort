@@ -56,7 +56,7 @@ struct MainTabView: View {
             }
             .tabItem { Label("Кабинет", systemImage: "person.circle") }
             .tag(TabType.profile)
-            .badge(rootStore.profileStore.missedCount)
+            .badge(rootStore.timeAllocationStore.missedCount)
             
             NavigationStack(path: $router.infoPath) {
                 UsefulInfoView()
@@ -71,5 +71,8 @@ struct MainTabView: View {
             .tag(TabType.info)
         }
         .tint(.brand)
+        .task {
+            rootStore.timeAllocationStore.loadFavoriteProjects()
+        }
     }
 }
