@@ -179,6 +179,110 @@ enum MockData {
     ]
     
     // MARK: - профиль пользователя
-    static let userProfile: UserProfileDTO = UserProfileDTO(id: 10000017, name: "Дарья Фёдорова", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Казань", birthday: "16.11.1997", email: "d.fedorova@company.ru", telegram: nil)
-        
+    static let userProfile: UserProfileDTO = UserProfileDTO(
+        id: 10000017,
+        name: "Дарья Фёдорова",
+        position: "Android-разработчик",
+        teamId: 20000005,
+        managerId: 10000010,
+        city: "Казань",
+        birthday: "16.11.1997",
+        email: "d.fedorova@company.ru",
+        telegram: nil,
+        favoriteProjectIds:
+            [50000001, 50000002, 50000005],
+        missedDates: [
+            "2026-10-15",
+            "2026-10-16",
+            "2026-10-19",
+            "2026-10-20",
+            "2026-10-21"
+        ]
+    )
+    
+    // MARK: - проекты
+    static let projects: [ProjectDTO] = [
+        .init(id: 50000001, name: "Мобильное приложение"),
+        .init(id: 50000002, name: "Внутренний портал"),
+        .init(id: 50000003, name: "Аналитика"),
+        .init(id: 50000004, name: "Инфраструктура"),
+        .init(id: 50000005, name: "Поддержка"),
+        .init(id: 50000006, name: "CRM-система"),
+        .init(id: 50000007, name: "Маркетплейс"),
+        .init(id: 50000008, name: "Внутренние инструменты"),
+        .init(id: 50000009, name: "Исследовательский проект"),
+        .init(id: 50000010, name: "Автоматизация процессов")
+    ]
+    
+    // MARK: - заполненные даты
+    static let dayAllocations: [DayAllocationDTO] = [
+        .init(date: "2026-09-29", allocations: [
+            .init(projectId: 50000001, hours: 60),
+            .init(projectId: 50000002, hours: 40)
+        ]),
+        .init(date: "2026-09-30", allocations: [
+            .init(projectId: 50000001, hours: 80),
+            .init(projectId: 50000005, hours: 20)
+        ]),
+        .init(date: "2026-10-01", allocations: [
+            .init(projectId: 50000001, hours: 40),
+            .init(projectId: 50000002, hours: 30),
+            .init(projectId: 50000005, hours: 20)
+        ]),
+        .init(date: "2026-10-02", allocations: [
+            .init(projectId: 50000002, hours: 50),
+            .init(projectId: 50000005, hours: 50)
+        ]),
+        .init(date: "2026-10-05", allocations: [
+            .init(projectId: 50000001, hours: 100)
+        ]),
+        .init(date: "2026-10-06", allocations: [
+            .init(projectId: 50000001, hours: 60),
+            .init(projectId: 50000002, hours: 40)
+        ]),
+        .init(date: "2026-10-07", allocations: [
+            .init(projectId: 50000001, hours: 80),
+            .init(projectId: 50000005, hours: 20)
+        ]),
+        .init(date: "2026-10-08", allocations: [
+            .init(projectId: 50000001, hours: 40),
+            .init(projectId: 50000002, hours: 30),
+            .init(projectId: 50000005, hours: 20)
+        ]),
+        .init(date: "2026-10-09", allocations: [
+            .init(projectId: 50000002, hours: 50),
+            .init(projectId: 50000005, hours: 50)
+        ]),
+        .init(date: "2026-10-12", allocations: [
+            .init(projectId: 50000001, hours: 100)
+        ]),
+        .init(date: "2026-10-13", allocations: [
+            .init(projectId: 50000001, hours: 30),
+            .init(projectId: 50000005, hours: 70)
+        ]),
+        .init(date: "2026-10-14", allocations: [
+            .init(projectId: 50000001, hours: 40),
+            .init(projectId: 50000002, hours: 40),
+            .init(projectId: 50000005, hours: 20)
+        ])//,
+//        .init(date: "2026-10-15", allocations: [
+//            .init(projectId: 50000002, hours: 100)
+//        ]),
+//        .init(date: "2026-10-16", allocations: [
+//            .init(projectId: 50000002, hours: 60),
+//            .init(projectId: 50000005, hours: 40)
+//        ]),
+        //            .init(date: "2026-10-19", allocations: [
+        //                .init(projectId: 50000001, hours: 25),
+        //                .init(projectId: 50000002, hours: 75)
+        //            ]),
+        //            .init(date: "2026-10-20", allocations: [
+        //                .init(projectId: 50000002, hours: 60),
+        //                .init(projectId: 50000005, hours: 40)
+        //            ]),
+        //            .init(date: "2026-10-21", allocations: [
+        //                .init(projectId: 50000001, hours: 50),
+        //                .init(projectId: 50000005, hours: 50)
+        //            ])
+    ]
 }

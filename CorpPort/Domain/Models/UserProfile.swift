@@ -17,6 +17,8 @@ final class UserProfile: Identifiable, Hashable {
     let birthday: String?
     let email: String?
     let tg: String?
+    var favoriteProjects: [Project] = []
+    var missedDates: [Date] = []
     
     init(
         id: Int,
@@ -27,8 +29,9 @@ final class UserProfile: Identifiable, Hashable {
         city: String? = nil,
         birthday: String? = nil,
         email: String? = nil,
-        tg: String? = nil
-        
+        tg: String? = nil,
+        favoriteProjects: [Project] = [],
+        missedDates: [Date] = []
     ) {
         self.id = id
         self.name = name
@@ -39,6 +42,8 @@ final class UserProfile: Identifiable, Hashable {
         self.birthday = birthday
         self.email = email
         self.tg = tg
+        self.favoriteProjects = favoriteProjects
+        self.missedDates = missedDates
     }
     
     static func == (lhs: UserProfile, rhs: UserProfile) -> Bool {

@@ -56,6 +56,7 @@ struct MainTabView: View {
             }
             .tabItem { Label("Кабинет", systemImage: "person.circle") }
             .tag(TabType.profile)
+            .badge(rootStore.profileStore.missedCount)
             
             NavigationStack(path: $router.infoPath) {
                 UsefulInfoView()

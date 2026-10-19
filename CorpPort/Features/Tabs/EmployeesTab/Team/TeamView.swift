@@ -69,8 +69,6 @@ struct TeamView: View {
                 }
             }
         }
-//        .navigationTitle(teamStore.team.name)
-//        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder

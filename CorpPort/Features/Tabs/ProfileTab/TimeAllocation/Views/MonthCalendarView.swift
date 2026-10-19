@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MonthCalendarView: View {
+    let store: TimeAllocationStore
     let currentMonth: Date
     let selectedDate: Date
     let onMonthChange: (Int) -> Void
     let onDateSelect: (Date) -> Void
-    
+        
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -53,7 +54,7 @@ struct MonthCalendarView: View {
                             date: date,
                             isSelected: Calendar.current.isDate(date, inSameDayAs: selectedDate),
                             isToday: Calendar.current.isDateInToday(date),
-                            isMissed: isMissedDate(date)
+                            isMissed: store.isMissed(date)
                         ) {
                             onDateSelect(date)
                         }
@@ -92,18 +93,5 @@ struct MonthCalendarView: View {
             }
         }
         return days
-    }
-    
-    private func isMissedDate(_ date: Date) -> Bool {
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let check = calendar.startOfDay(for: date)
-        
-        guard check < today else { return false }
-        
-        let weekday = calendar.component(.weekday, from: date)
-        guard weekday != 1 && weekday != 7 else { return false }
-        
-        return calendar.component(.day, from: date) % 2 == 0
     }
 }

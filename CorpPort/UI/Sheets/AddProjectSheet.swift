@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-// MARK: - Модальное окно добавления проекта
 struct AddProjectSheet: View {
-    let availableProjects: [String]
-    let onSelect: (String) -> Void
+    let availableProjects: [Project]
+    let onSelect: (Project) -> Void
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
-            List(availableProjects, id: \.self) { project in
-                Button(project) {
+            List(availableProjects) { project in
+                Button(project.name) {
                     onSelect(project)
                     dismiss()
                 }

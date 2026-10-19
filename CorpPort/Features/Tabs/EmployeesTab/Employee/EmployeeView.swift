@@ -104,14 +104,9 @@ struct EmployeeView: View {
             }
             .padding(.bottom, 30)
         }
-//        .navigationTitle("Сотрудник")
-//        .navigationBarTitleDisplayMode(.inline)
     }
     
     // MARK: - Helpers
-    
-
-    
     private func infoRow(title: String, value: String, isInteractive: Bool = false) -> some View {
         HStack {
             Text(title)

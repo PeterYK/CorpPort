@@ -11,7 +11,6 @@ import SwiftUI
 final class LoginStore {
     @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
     @ObservationIgnored private var NetworkService: NetworkService = ServiceLocator.shared.getService()
-
     private let appState: AppState
     
     var login = ""

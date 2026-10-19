@@ -15,10 +15,11 @@ struct ProfileView: View {
            let team = userProfile.team {
             ScrollView {
                 VStack(spacing: 24) {
-                    // Плитки-кнопки
                     HStack(spacing: 16) {
-                        tileButton(title: "ТРЗ", icon: "calendar", badge: 3) {
-                            rootStore.profileStore.dispatch(.timeAllocationTapped)
+                        if rootStore.profileStore.missedCount > 0 {
+                            tileButton(title: "ТРЗ", icon: "calendar", badge: rootStore.profileStore.missedCount) {
+                                rootStore.profileStore.dispatch(.timeAllocationTapped)
+                            }
                         }
                         tileButton(title: "Моя команда", icon: "person.3") {
                             rootStore.profileStore.dispatch(.teamTapped)

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ProjectsSectionView: View {
     let projects: [ProjectAllocation]
-    let onHoursChange: (UUID, Int) -> Void
-    let onDelete: (UUID) -> Void          // ← новое
+    let onHoursChange: (Int, Int) -> Void
+    let onDelete: (Int) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -20,23 +20,27 @@ struct ProjectsSectionView: View {
             
             ForEach(projects) { project in
                 HStack {
-                    Text(project.name)
+                    Text(project.project.name)
                     
                     Spacer()
                     
-                    TextField("0", value: Binding(
+                    TextField("", value: Binding(
                         get: { project.hours },
-                        set: { onHoursChange(project.id, $0) }
+                        set: { newValue in
+                            onHoursChange(project.id, newValue)
+                        }
                     ), format: .number)
                     .keyboardType(.numberPad)
                     .frame(width: 60)
                     .textFieldStyle(.roundedBorder)
                     .multilineTextAlignment(.trailing)
+                    .onTapGesture {
+                        // фокус обрабатывается системой
+                    }
                     
                     Text("%")
                         .foregroundStyle(.secondary)
                     
-                    // Кнопка удаления
                     Button {
                         onDelete(project.id)
                     } label: {

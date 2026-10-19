@@ -11,9 +11,10 @@ enum TimeAllocationActions {
     case selectDate(Date)
     case changeMonth(Int)
     case changeSelectedDate(Int)
-    case addProject(String)
-    case deleteProject(UUID)
-    case updateHours(projectId: UUID, hours: Int)
+    case addProject(Project)
+    case deleteProject(Int)
+    case updateHours(projectId: Int, hours: Int)
     case showAddProject
     case hideAddProject
+    case save
 }

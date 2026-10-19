@@ -16,6 +16,7 @@ struct TimeAllocationView: View {
         ScrollView {
             VStack(spacing: 20) {
                 MonthCalendarView(
+                    store: store,
                     currentMonth: store.currentMonth,
                     selectedDate: store.selectedDate,
                     onMonthChange: { value in
@@ -51,6 +52,20 @@ struct TimeAllocationView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .padding(.horizontal)
+                
+                Button {
+                    store.dispatch(.save)
+                } label: {
+                    if store.isSaving {
+                        ProgressView()
+                    } else {
+                        Text("Сохранить")
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(store.isSaving)
+                .padding(.horizontal)
             }
             .padding(.vertical)
         }
@@ -59,10 +74,14 @@ struct TimeAllocationView: View {
         .sheet(isPresented: $store.showAddProject) {
             AddProjectSheet(
                 availableProjects: store.availableProjects,
-                onSelect: { name in
-                    store.dispatch(.addProject(name))
+                onSelect: { project in
+                    store.dispatch(.addProject(project))
                 }
             )
+        }
+        .task {
+            store.loadFavoriteProjects()
+            store.dispatch(.selectDate(store.selectedDate))
         }
     }
 }

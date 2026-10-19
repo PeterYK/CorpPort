@@ -9,6 +9,9 @@ import Foundation
 
 @Observable
 final class RootStore {
+    @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
+    @ObservationIgnored private var networkService: NetworkService = ServiceLocator.shared.getService()
+
     let loginStore: LoginStore
     let wallStore: WallStore
     let infoStore: UsefulInfoStore
@@ -17,6 +20,7 @@ final class RootStore {
     let profileStore: ProfileStore
     let timeAllocationStore: TimeAllocationStore
 
+    // в init
     private let router: AppRouter
 
     init(appState: AppState, router: AppRouter) {
@@ -26,8 +30,8 @@ final class RootStore {
         self.infoStore = UsefulInfoStore(router: router)
         self.teamsStore = TeamsStore(router: router)
         self.employeesStore = EmployeesStore(router: router)
-        self.profileStore = ProfileStore(router: router, appState: appState)
-        self.timeAllocationStore = TimeAllocationStore()
+        self.profileStore = ProfileStore(router: router, appState: appState, dataService: dataService)
+        self.timeAllocationStore = TimeAllocationStore(dataService: dataService, networkService: networkService)
     }
     
     func makeTeamStore(team: Team, tab: TabType) -> TeamStore {
