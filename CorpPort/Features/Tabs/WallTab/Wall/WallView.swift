@@ -60,10 +60,11 @@ struct WallView: View {
                     }
                     .padding(.vertical, 6)
                 }
+                .buttonStyle(.plain)
             }
         }
         .navigationTitle("Стена")
-//        .navigationBarTitleDisplayMode(.inline)
+        .withAppLogo()
     }
     
     private func tagButton(title: String, isSelected: Bool, action: @escaping () -> Void) -> some View {

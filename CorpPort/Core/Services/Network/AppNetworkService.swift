@@ -28,5 +28,15 @@ final class AppNetworkService: NetworkService {
         return []
     }
     
+    func fetchProjects() async throws -> [ProjectDTO] {
+        return []
+    }
+    
+    func fetchDayAllocation(for date: Date) async throws -> DayAllocationDTO? {
+        return nil
+    }
+
+    func saveDayAllocation(_ allocation: DayAllocationDTO) async throws {}
+    
     public init() {}
 }

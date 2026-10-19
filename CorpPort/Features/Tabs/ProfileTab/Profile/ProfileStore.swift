@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable
 final class ProfileStore {
-    private var dataService: DataService = ServiceLocator.shared.getService()
+    private var dataService: DataService
 
     private var router: AppRouter
     private var appState: AppState
@@ -18,7 +18,12 @@ final class ProfileStore {
         dataService.userProfile
     }
     
-    init (router: AppRouter, appState: AppState) {
+    var missedCount: Int {
+        dataService.userProfile?.missedDates.count ?? 0
+    }
+    
+    init (router: AppRouter, appState: AppState, dataService: DataService) {
+        self.dataService = dataService
         self.router = router
         self.appState = appState
     }

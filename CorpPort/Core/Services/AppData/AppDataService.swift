@@ -15,6 +15,7 @@ final class AppDataService: DataService {
     private(set) var teams: [Team] = []
     private(set) var wallPosts: [WallPost] = []
     private(set) var infoArticles: [InfoArticle] = []
+    private(set) var projects: [Project] = []
     
     init(networkService: NetworkService) {
         self.networkService = networkService
@@ -26,8 +27,9 @@ final class AppDataService: DataService {
         async let teamsDTO = networkService.fetchTeams()
         async let postsDTO = networkService.fetchWallPosts()
         async let articlesDTO = networkService.fetchInfoArticles()
+        async let projectsDTO = networkService.fetchProjects()
         
-        let (empDTO, teamDTO, postDTO, artDTO, userProfDTO) = try await (employeesDTO, teamsDTO, postsDTO, articlesDTO, userProfileDTO)
+        let (empDTO, teamDTO, postDTO, artDTO, userProfDTO, projDTO) = try await (employeesDTO, teamsDTO, postsDTO, articlesDTO, userProfileDTO, projectsDTO)
         
         // Маппинг сотрудников и команд
         let (mappedEmployees, mappedTeams, mappedUserProfile) = MockDataMapper.map(
@@ -38,9 +40,15 @@ final class AppDataService: DataService {
         
         employees = mappedEmployees
         teams = mappedTeams
-        userProfile = mappedUserProfile
         
-        // Маппинг постов и статей (простой)
+        
+        let updatedProfile = MockDataMapper.map(
+            userProfile: mappedUserProfile,
+            projectsDTO: projDTO,
+            userProfileDTO: userProfDTO
+        )
+        userProfile = updatedProfile
+        
         wallPosts = postDTO.map { dto in
             WallPost(
                 tag: dto.tag,
@@ -56,4 +64,7 @@ final class AppDataService: DataService {
                 content: dto.content
             )
         }
-    }}
+        
+        projects = projDTO.map { Project(id: $0.id, name: $0.name) }
+    }
+}

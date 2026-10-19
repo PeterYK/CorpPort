@@ -13,6 +13,7 @@ protocol DataService {
     var teams: [Team] { get }
     var wallPosts: [WallPost] { get }
     var infoArticles: [InfoArticle] { get }
+    var projects: [Project] { get }
     
     func loadAllData() async throws
 }

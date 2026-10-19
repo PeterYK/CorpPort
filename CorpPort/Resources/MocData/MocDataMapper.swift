@@ -76,6 +76,13 @@ enum MockDataMapper {
         let userTeam = userProfileDTO.teamId.flatMap { teamById[$0] }
         let userManager = userProfileDTO.managerId.flatMap { employeeById[$0] }
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        let missed = (userProfileDTO.missedDates ?? []).compactMap {
+            dateFormatter.date(from: $0)
+        }
+        
         let userProfile = UserProfile(
             id: userProfileDTO.id,
             name: userProfileDTO.name,
@@ -85,9 +92,24 @@ enum MockDataMapper {
             city: userProfileDTO.city,
             birthday: userProfileDTO.birthday,
             email: userProfileDTO.email,
-            tg: userProfileDTO.telegram
+            tg: userProfileDTO.telegram,
+            missedDates: missed
         )
         
         return (employees, teams, userProfile)
+    }
+    
+    static func map(userProfile: UserProfile, projectsDTO: [ProjectDTO], userProfileDTO: UserProfileDTO ) -> UserProfile {
+        // Преобразуем все проекты
+            let allProjects = projectsDTO.map { Project(id: $0.id, name: $0.name) }
+            
+            // Находим избранные по id из DTO
+            let favoriteIds = userProfileDTO.favoriteProjectIds ?? []
+            let favorites = allProjects.filter { favoriteIds.contains($0.id) }
+            
+            // Обновляем профиль
+            userProfile.favoriteProjects = favorites
+            
+            return userProfile
     }
 }

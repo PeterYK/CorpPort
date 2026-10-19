@@ -14,7 +14,6 @@ final class MockNetworkService: NetworkService {
     }
     
     func fetchEmployees() async throws -> [EmployeeDTO] {
-        // имитация задержки сети
         try await Task.sleep(for: .milliseconds(300))
         return MockData.employees
     }
@@ -26,11 +25,29 @@ final class MockNetworkService: NetworkService {
     
     func fetchWallPosts() async throws -> [WallPostDTO] {
         try await Task.sleep(for: .milliseconds(200))
-        return MockData.wallPosts   // добавь в MockData
+        return MockData.wallPosts 
     }
     
     func fetchInfoArticles() async throws -> [InfoArticleDTO] {
         try await Task.sleep(for: .milliseconds(200))
         return MockData.infoArticles
+    }
+    
+    func fetchProjects() async throws -> [ProjectDTO] {
+        try await Task.sleep(for: .milliseconds(200))
+        return MockData.projects
+    }
+    
+    func fetchDayAllocation(for date: Date) async throws -> DayAllocationDTO? {
+        try await Task.sleep(for: .milliseconds(200))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let key = formatter.string(from: date)
+        return MockData.dayAllocations.first { $0.date == key }
+    }
+
+    func saveDayAllocation(_ allocation: DayAllocationDTO) async throws {
+        try await Task.sleep(for: .milliseconds(300))
+        print("Сохранено: \(allocation.date)")
     }
 }

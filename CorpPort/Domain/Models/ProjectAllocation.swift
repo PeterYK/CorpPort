@@ -8,7 +8,13 @@
 import Foundation
 
 struct ProjectAllocation: Identifiable {
-    let id = UUID()
-    var name: String
+    let id: Int
+    let project: Project
     var hours: Int
+    
+    init(project: Project, hours: Int = 0) {
+        self.id = project.id
+        self.project = project
+        self.hours = hours
+    }
 }
