@@ -12,14 +12,13 @@ struct TeamCell: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            // Аватар / маскот
             Circle()
                 .fill(Color.blue.opacity(0.15))
                 .frame(width: 80, height: 80)
                 .overlay {
-                    Image(systemName: "person.3.fill")
+                    Image(systemName: team.mascotIcon)
                         .font(.system(size: 32))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.brand)
                 }
             
             Text(team.name)
