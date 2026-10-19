@@ -25,7 +25,9 @@ struct UsefulInfoView: View {
                 }
                 .padding(.vertical, 4)
             }
+            .buttonStyle(.plain)
         }
         .navigationTitle("Полезное")
+        .withAppLogo()
     }
 }

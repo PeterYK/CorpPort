@@ -34,6 +34,6 @@ struct TeamsEmployeesView: View {
             }
         }
         .navigationTitle("Сотрудники")
-//        .navigationBarTitleDisplayMode(.inline)
+        .withAppLogo()
     }
 }

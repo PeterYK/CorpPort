@@ -91,6 +91,7 @@ struct ProfileView: View {
                 .padding(.bottom, 15)
             }
             .navigationTitle("Кабинет")
+            .withAppLogo()
         } else {
             Text("Не удалось получить данные о пользователе")
         }

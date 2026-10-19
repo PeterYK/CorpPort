@@ -15,7 +15,8 @@ final class RootStore {
     let teamsStore: TeamsStore
     let employeesStore: EmployeesStore
     let profileStore: ProfileStore
-    
+    let timeAllocationStore: TimeAllocationStore
+
     private let router: AppRouter
 
     init(appState: AppState, router: AppRouter) {
@@ -26,6 +27,7 @@ final class RootStore {
         self.teamsStore = TeamsStore(router: router)
         self.employeesStore = EmployeesStore(router: router)
         self.profileStore = ProfileStore(router: router, appState: appState)
+        self.timeAllocationStore = TimeAllocationStore()
     }
     
     func makeTeamStore(team: Team, tab: TabType) -> TeamStore {
