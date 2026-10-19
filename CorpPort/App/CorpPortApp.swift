@@ -42,8 +42,5 @@ struct CorporatePortalApp: App {
         notificationService.onTRZNotificationTapped = { [weak router] in
             router?.openTimeAllocations()
         }
-//        } else {
-//            print("notificationService is nil")
-//        }
     }
 }

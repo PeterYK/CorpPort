@@ -13,7 +13,6 @@ final class AppSettingsStore {
     private let reminderTimeKey = "trz_reminder_time"
     
     var isDailyReminderEnabled = false
-    //    var reminderTime = Calendar.current.date(from: DateComponents(hour: 18, minute: 0)) ?? Date()
     var reminderTime: Date {
         didSet {
             saveReminderTime()
