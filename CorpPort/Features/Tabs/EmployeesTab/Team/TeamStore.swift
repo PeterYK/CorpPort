@@ -11,9 +11,9 @@ import SwiftUI
 final class TeamStore {
     private var router: AppRouter
     let team: Team
-    private let tab: Tab
+    private let tab: TabType
     
-    init (team: Team, router: AppRouter, tab: Tab) {
+    init (team: Team, router: AppRouter, tab: TabType) {
         self.router = router
         self.team = team
         self.tab = tab
@@ -23,7 +23,7 @@ final class TeamStore {
         switch action {
         case .employeeTapped(let employee):
             if tab == .employees {
-                router.employeesPath.append(EmployeesRoute.employee(employee))
+                router.employeesPath.append(TeamsEmployeesRoute.employee(employee))
             } else {
                 router.profilePath.append(ProfileRoute.employee(employee))
             }

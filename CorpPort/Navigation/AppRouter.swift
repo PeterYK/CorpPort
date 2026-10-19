@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable
 final class AppRouter {
-    var selectedTab: Tab = .wall
+    var selectedTab: TabType = .wall
     
     var wallPath = NavigationPath()
     var employeesPath = NavigationPath()

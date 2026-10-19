@@ -26,7 +26,6 @@ struct UsefulInfoView: View {
                 .padding(.vertical, 4)
             }
         }
-        .navigationTitle("Полезная информация")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Полезное")
     }
 }

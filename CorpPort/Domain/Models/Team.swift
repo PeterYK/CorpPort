@@ -8,7 +8,7 @@
 import Foundation
 
 struct Team: Identifiable, Hashable {
-    let id = UUID()
+    let id: Int
     let name: String
     let description: String
     let mascotIcon: String

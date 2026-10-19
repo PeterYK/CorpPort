@@ -10,7 +10,7 @@ import SwiftUI
 struct EmployeeView: View {
     let store: EmployeeStore
 
-    init(employee: Employee, tab: Tab, rootStore: RootStore) {
+    init(employee: Employee, tab: TabType, rootStore: RootStore) {
         self.store = rootStore.makeEmployeeStore(employee: employee, tab: tab)
     }
     
@@ -104,8 +104,8 @@ struct EmployeeView: View {
             }
             .padding(.bottom, 30)
         }
-        .navigationTitle("Сотрудник")
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationTitle("Сотрудник")
+//        .navigationBarTitleDisplayMode(.inline)
     }
     
     // MARK: - Helpers

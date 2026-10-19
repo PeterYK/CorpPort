@@ -8,6 +8,11 @@
 import Foundation
 
 final class MockNetworkService: NetworkService {
+    func fetchUserProfile() async throws -> UserProfileDTO {
+        try await Task.sleep(for: .milliseconds(300))
+        return MockData.userProfile
+    }
+    
     func fetchEmployees() async throws -> [EmployeeDTO] {
         // имитация задержки сети
         try await Task.sleep(for: .milliseconds(300))

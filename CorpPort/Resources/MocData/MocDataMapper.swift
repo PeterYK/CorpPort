@@ -11,14 +11,16 @@ enum MockDataMapper {
     
     static func map(
         employeesDTO: [EmployeeDTO],
-        teamsDTO: [TeamDTO]
-    ) -> (employees: [Employee], teams: [Team]) {
+        teamsDTO: [TeamDTO],
+        userProfileDTO: UserProfileDTO
+    ) -> (employees: [Employee], teams: [Team], userProfile: UserProfile) {
         
         // 1. Создаём всех сотрудников без связей
         var employeeById: [Int: Employee] = [:]
         
         for dto in employeesDTO {
             let employee = Employee(
+                id: dto.id,
                 name: dto.name,
                 position: dto.position,
                 city: dto.city,
@@ -47,6 +49,7 @@ enum MockDataMapper {
             let members = dto.memberIds.compactMap { employeeById[$0] }
             
             let team = Team(
+                id: dto.id,
                 name: dto.name,
                 description: dto.description,
                 mascotIcon: dto.mascotIcon,
@@ -69,6 +72,22 @@ enum MockDataMapper {
         
         let employees = employeesDTO.compactMap { employeeById[$0.id] }
         
-        return (employees, teams)
+        // 5. Собираем UserProfile
+        let userTeam = userProfileDTO.teamId.flatMap { teamById[$0] }
+        let userManager = userProfileDTO.managerId.flatMap { employeeById[$0] }
+        
+        let userProfile = UserProfile(
+            id: userProfileDTO.id,
+            name: userProfileDTO.name,
+            position: userProfileDTO.position,
+            team: userTeam,
+            manager: userManager,
+            city: userProfileDTO.city,
+            birthday: userProfileDTO.birthday,
+            email: userProfileDTO.email,
+            tg: userProfileDTO.telegram
+        )
+        
+        return (employees, teams, userProfile)
     }
 }

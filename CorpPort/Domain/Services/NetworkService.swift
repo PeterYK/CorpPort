@@ -8,6 +8,7 @@
 import Foundation
 
 protocol NetworkService {
+    func fetchUserProfile() async throws -> UserProfileDTO
     func fetchEmployees() async throws -> [EmployeeDTO]
     func fetchTeams() async throws -> [TeamDTO]
     func fetchWallPosts() async throws -> [WallPostDTO]

@@ -29,7 +29,7 @@ final class TeamsStore {
     func dispatch(_ action: TeamsActions) {
         switch action {
         case .teamTapped(let team):
-            router.employeesPath.append(TeamsRoute.team(team))
+            router.employeesPath.append(TeamsEmployeesRoute.team(team))
         }
     }
     

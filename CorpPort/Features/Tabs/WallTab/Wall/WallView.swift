@@ -19,11 +19,13 @@ struct WallView: View {
                     tagButton(title: "Все", isSelected: rootStore.wallStore.selectedTag == nil) {
                         rootStore.wallStore.dispatch(.selectTag(nil))
                     }
+
                     
                     ForEach(rootStore.wallStore.tags, id: \.self) { tag in
                         tagButton(title: tag, isSelected: rootStore.wallStore.selectedTag == tag) {
                             rootStore.wallStore.dispatch(.selectTag(tag))
                         }
+
                     }
                 }
                 .padding(.horizontal)
@@ -61,7 +63,7 @@ struct WallView: View {
             }
         }
         .navigationTitle("Стена")
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitleDisplayMode(.inline)
     }
     
     private func tagButton(title: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
@@ -70,7 +72,7 @@ struct WallView: View {
                 .font(.subheadline)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(isSelected ? Color.blue : Color.gray.opacity(0.15))
+                .background(isSelected ? Color.brand : Color.gray.opacity(0.15))
                 .foregroundStyle(isSelected ? .white : .primary)
                 .clipShape(Capsule())
         }

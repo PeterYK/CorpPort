@@ -8,110 +8,96 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(AppState.self) var appState
-    @Environment(AppRouter.self) var router
-
-    // отладочные данные-данные
-    private let fullName = "Иван Иванов"
-    private let role = "iOS-разработчик"
-    private let team =  Team(
-        name: "Mobile",
-        description: "Команда разработки мобильных приложений. Делаем iOS и Android клиенты корпоративного портала.",
-        mascotIcon: "iphone",
-        leaders: [
-            Employee(name: "Алексей Смирнов", position: "Team Lead")
-        ],
-        members: [
-            Employee(name: "Иван Иванов", position: "iOS-разработчик"),
-            Employee(name: "Мария Петрова", position: "Дизайнер"),
-            Employee(name: "Ольга Кузнецова", position: "Android-разработчик")
-        ]
-    )
-    private let manager = Employee(name: "Алексей Смирнов", position: "Team Lead")
-    private let location = "Москва"
-    private let birthday = "15 марта"
-    private let email = "ivan.ivanov@company.com"
+    @Environment(RootStore.self) var rootStore
     
     var body: some View {
-//        @Bindable var appState = appState
-        
-        ScrollView {
-            VStack(spacing: 24) {
-                // Плитки-кнопки
-                HStack(spacing: 16) {
-                    tileButton(title: "ТРЗ", icon: "calendar", badge: 3) {
-                        router.profilePath.append(ProfileRoute.timeAllocation)
-                    }
-                    tileButton(title: "Моя команда", icon: "person.3") {
-                        router.profilePath.append(ProfileRoute.myTeam(team))
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 20)
-                HStack(spacing: 16) {
-                    Circle()
-                        .fill(Color.gray.opacity(0.2))
-                        .frame(width: 80, height: 80)
-                        .overlay {
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 32))
-                                .foregroundStyle(.gray)
+        if let userProfile = rootStore.profileStore.userProfile,
+           let team = userProfile.team {
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Плитки-кнопки
+                    HStack(spacing: 16) {
+                        tileButton(title: "ТРЗ", icon: "calendar", badge: 3) {
+                            rootStore.profileStore.dispatch(.timeAllocationTapped)
                         }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(fullName)
-                            .font(.title2.bold())
-                        Text(role)   // можно оставить роль рядом или убрать
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                        tileButton(title: "Моя команда", icon: "person.3") {
+                            rootStore.profileStore.dispatch(.teamTapped)
+                        }
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 20)
+                    HStack(spacing: 16) {
+                        Circle()
+                            .fill(Color.gray.opacity(0.2))
+                            .frame(width: 80, height: 80)
+                            .overlay {
+                                Image(systemName: "person.fill")
+                                    .font(.system(size: 32))
+                                    .foregroundStyle(.gray)
+                            }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(userProfile.name)
+                                .font(.title2.bold())
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 10)
+                    // Информация
+                    VStack(alignment: .leading, spacing: 12) {
+                        infoRow(title: "Роль", value: userProfile.position)
+                        
+                        // Интерактивная команда
+                        Button {
+                            rootStore.profileStore.dispatch(.teamTapped)
+                        } label: {
+                            infoRow(title: "Команда", value: team.name, isInteractive: true)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        // Интерактивный руководитель
+                        if let manager = userProfile.manager {
+                            Button {
+                                rootStore.profileStore.dispatch(.employeeTapped)
+                            } label: {
+                                infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        
+                        if let location = userProfile.city {
+                            infoRow(title: "Локация", value: location)
+                        }
+                        if let birthday = userProfile.birthday {
+                            infoRow(title: "День рождения", value: birthday)
+                        }
+                        if let email = userProfile.email {
+                            infoRow(title: "Почта", value: email)
+                        }
+                    }
+                    .padding(.horizontal)
                     
                     Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 10)
-                // Информация
-                VStack(alignment: .leading, spacing: 12) {
-                    infoRow(title: "Роль", value: role)
                     
-                    // Интерактивная команда
-                    Button {
-                        router.profilePath.append(ProfileRoute.myTeam(team))
-                    } label: {
-                        infoRow(title: "Команда", value: team.name, isInteractive: true)
+                    // Выход
+                    Button("Выйти") {
+                        rootStore.profileStore.dispatch(.logoutTapped)
                     }
-                    .buttonStyle(.plain)
-                    
-                    // Интерактивный руководитель
-                    Button {
-                        router.profilePath.append(ProfileRoute.employee(manager))
-                    } label: {
-                        infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
-                    }
-                    .buttonStyle(.plain)
-                    
-                    infoRow(title: "Локация", value: location)
-                    infoRow(title: "День рождения", value: birthday)
-                    infoRow(title: "Почта", value: email)
+                    .foregroundStyle(.red)
+                    .padding(.top, 20)
                 }
-                .padding(.horizontal)
-                
-                Spacer()
-                
-                // Выход
-                Button("Выйти") {
-                    appState.isAuthenticated = false
-                    router.resetAllPaths()
-                }
-                .foregroundStyle(.red)
-                .padding(.top, 20)
+                .padding(.bottom, 15)
             }
-            .padding(.bottom, 15)
+            .navigationTitle("Кабинет")
+        } else {
+            Text("Не удалось получить данные о пользователе")
         }
-        .navigationTitle("Кабинет")
-        .navigationBarTitleDisplayMode(.inline)
     }
-    
+}
+
+extension ProfileView {
     // MARK: - Вспомогательные вью
     private func infoRow(title: String, value: String, isInteractive: Bool = false) -> some View {
         HStack {
@@ -141,6 +127,7 @@ struct ProfileView: View {
                 VStack(spacing: 8) {
                     Image(systemName: icon)
                         .font(.title2)
+                        .tint(Color.brand)
                     Text(title)
                         .font(.subheadline.weight(.medium))
                 }

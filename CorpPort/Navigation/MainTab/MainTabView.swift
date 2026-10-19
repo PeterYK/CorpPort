@@ -25,25 +25,21 @@ struct MainTabView: View {
                     }
             }
             .tabItem { Label("Стена", systemImage: "newspaper") }
-            .tag(Tab.wall)
+            .tag(TabType.wall)
             
             NavigationStack(path: $router.employeesPath) {
                 TeamsEmployeesView()
-                    .navigationDestination(for: EmployeesRoute.self) { route in
+                    .navigationDestination(for: TeamsEmployeesRoute.self) { route in
                         switch route {
                         case .employee(let employee):
                             EmployeeView(employee: employee, tab: .employees, rootStore: rootStore)
-                        }
-                    }
-                    .navigationDestination(for: TeamsRoute.self) { route in
-                        switch route {
                         case .team(let team):
                             TeamView(team: team, tab: .employees, rootStore: rootStore)
                         }
                     }
             }
-            .tabItem { Label("Коллеги", systemImage: "person.3") }
-            .tag(Tab.employees)
+            .tabItem { Label("Сотрудники", systemImage: "person.3") }
+            .tag(TabType.employees)
             
             NavigationStack(path: $router.profilePath) {
                 ProfileView()
@@ -59,7 +55,7 @@ struct MainTabView: View {
                     }
             }
             .tabItem { Label("Кабинет", systemImage: "person.circle") }
-            .tag(Tab.profile)
+            .tag(TabType.profile)
             
             NavigationStack(path: $router.infoPath) {
                 UsefulInfoView()
@@ -71,7 +67,8 @@ struct MainTabView: View {
                     }
             }
             .tabItem { Label("Инфо", systemImage: "info.circle") }
-            .tag(Tab.info)
+            .tag(TabType.info)
         }
+        .tint(.brand)
     }
 }

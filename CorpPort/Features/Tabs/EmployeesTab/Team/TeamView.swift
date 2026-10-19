@@ -10,7 +10,7 @@ import SwiftUI
 struct TeamView: View {
     let teamStore: TeamStore
     
-    init(team: Team, tab: Tab, rootStore: RootStore) {
+    init(team: Team, tab: TabType, rootStore: RootStore) {
         self.teamStore = rootStore.makeTeamStore(team: team, tab: tab)
     }
     
@@ -26,7 +26,7 @@ struct TeamView: View {
                         .overlay {
                             Image(systemName: teamStore.team.mascotIcon)
                                 .font(.system(size: 44))
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(.brand)
                         }
                     
                     Text(teamStore.team.name)
@@ -69,8 +69,8 @@ struct TeamView: View {
                 }
             }
         }
-        .navigationTitle(teamStore.team.name)
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationTitle(teamStore.team.name)
+//        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder

@@ -8,6 +8,7 @@
 import Foundation
 
 protocol DataService {
+    var userProfile: UserProfile? { get }
     var employees: [Employee] { get }
     var teams: [Team] { get }
     var wallPosts: [WallPost] { get }

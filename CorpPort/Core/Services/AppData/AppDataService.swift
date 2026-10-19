@@ -10,6 +10,7 @@ import Foundation
 final class AppDataService: DataService {
     private let networkService: NetworkService
     
+    private(set) var userProfile: UserProfile?
     private(set) var employees: [Employee] = []
     private(set) var teams: [Team] = []
     private(set) var wallPosts: [WallPost] = []
@@ -20,21 +21,24 @@ final class AppDataService: DataService {
     }
     
     func loadAllData() async throws {
+        async let userProfileDTO = networkService.fetchUserProfile()
         async let employeesDTO = networkService.fetchEmployees()
         async let teamsDTO = networkService.fetchTeams()
         async let postsDTO = networkService.fetchWallPosts()
         async let articlesDTO = networkService.fetchInfoArticles()
         
-        let (empDTO, teamDTO, postDTO, artDTO) = try await (employeesDTO, teamsDTO, postsDTO, articlesDTO)
+        let (empDTO, teamDTO, postDTO, artDTO, userProfDTO) = try await (employeesDTO, teamsDTO, postsDTO, articlesDTO, userProfileDTO)
         
         // Маппинг сотрудников и команд
-        let (mappedEmployees, mappedTeams) = MockDataMapper.map(
+        let (mappedEmployees, mappedTeams, mappedUserProfile) = MockDataMapper.map(
             employeesDTO: empDTO,
-            teamsDTO: teamDTO
+            teamsDTO: teamDTO,
+            userProfileDTO: userProfDTO
         )
         
         employees = mappedEmployees
         teams = mappedTeams
+        userProfile = mappedUserProfile
         
         // Маппинг постов и статей (простой)
         wallPosts = postDTO.map { dto in

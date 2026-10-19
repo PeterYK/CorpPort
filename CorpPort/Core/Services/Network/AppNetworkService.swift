@@ -8,6 +8,10 @@
 import Foundation
 
 final class AppNetworkService: NetworkService {
+    func fetchUserProfile() async throws -> UserProfileDTO {
+        return MockData.userProfile
+    }
+    
     func fetchEmployees() async throws -> [EmployeeDTO] {
         return []
     }

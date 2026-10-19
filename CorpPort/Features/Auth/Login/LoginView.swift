@@ -36,6 +36,7 @@ struct LoginView: View {
                 store.dispatch(.loginTapped)
             }
             .buttonStyle(.borderedProminent)
+            .tint(.brand)
             .disabled(store.isLoading || store.login.isEmpty || store.password.isEmpty)
         }
         .padding()

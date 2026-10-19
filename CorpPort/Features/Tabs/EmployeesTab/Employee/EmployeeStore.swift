@@ -5,15 +5,13 @@
 //  Created by Peter Kozlov on 17.10.2026.
 //
 
-import Foundation
-
 import SwiftUI
 
 @Observable
 final class EmployeeStore {
     private var router: AppRouter
     let employee: Employee
-    private let tab: Tab
+    private let tab: TabType
     
     var isLeader: Bool {
         //        guard let team = employee.team else { return false }
@@ -29,7 +27,7 @@ final class EmployeeStore {
         return team.members
     }
     
-    init (employee: Employee, router: AppRouter, tab: Tab) {
+    init (employee: Employee, router: AppRouter, tab: TabType) {
         self.router = router
         self.employee = employee
         self.tab = tab
@@ -39,14 +37,14 @@ final class EmployeeStore {
         switch action {
         case .employeeTapped(let employee):
             if tab == .employees {
-                router.employeesPath.append(EmployeesRoute.employee(employee))
+                router.employeesPath.append(TeamsEmployeesRoute.employee(employee))
             } else {
                 router.profilePath.append(ProfileRoute.employee(employee))
             }
         case .teamTapped:
             if let team = employee.team {
                 if tab == .employees {
-                    router.employeesPath.append(TeamsRoute.team(team))
+                    router.employeesPath.append(TeamsEmployeesRoute.team(team))
                 } else {
                     router.profilePath.append(ProfileRoute.employee(employee))
                 }

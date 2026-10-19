@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum ProfileActions {
+    case employeeTapped
+    case teamTapped
+    case timeAllocationTapped
+    case logoutTapped
+}

@@ -8,7 +8,7 @@
 import Foundation
 
 final class Employee: Identifiable, Hashable {
-    let id = UUID()
+    let id: Int
     let name: String
     let position: String
     var team: Team?
@@ -19,6 +19,7 @@ final class Employee: Identifiable, Hashable {
     let tg: String?
     
     init(
+        id: Int,
         name: String,
         position: String,
         team: Team? = nil,
@@ -29,6 +30,7 @@ final class Employee: Identifiable, Hashable {
         tg: String? = nil
         
     ) {
+        self.id = id
         self.name = name
         self.position = position
         self.team = team

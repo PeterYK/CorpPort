@@ -24,7 +24,7 @@ final class EmployeesStore {
     func dispatch(_ action: EmployeesActions) {
         switch action {
         case .employeeTapped(let employee):
-            router.employeesPath.append(EmployeesRoute.employee(employee))
+            router.employeesPath.append(TeamsEmployeesRoute.employee(employee))
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 enum EmployeesType: String, CaseIterable {
     case teams = "Команды"
-    case employees = "Коллеги"
+    case employees = "Сотрудники"
 }
 
 struct TeamsEmployeesView: View {
@@ -23,6 +23,7 @@ struct TeamsEmployeesView: View {
                 }
             }
             .pickerStyle(.segmented)
+            .tint(.brand)
             .padding()
             
             switch selectedType {
@@ -32,7 +33,7 @@ struct TeamsEmployeesView: View {
                 TeamsView()
             }
         }
-        .navigationTitle("Коллеги")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Сотрудники")
+//        .navigationBarTitleDisplayMode(.inline)
     }
 }

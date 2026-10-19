@@ -14,6 +14,7 @@ final class RootStore {
     let infoStore: UsefulInfoStore
     let teamsStore: TeamsStore
     let employeesStore: EmployeesStore
+    let profileStore: ProfileStore
     
     private let router: AppRouter
 
@@ -24,13 +25,14 @@ final class RootStore {
         self.infoStore = UsefulInfoStore(router: router)
         self.teamsStore = TeamsStore(router: router)
         self.employeesStore = EmployeesStore(router: router)
+        self.profileStore = ProfileStore(router: router, appState: appState)
     }
     
-    func makeTeamStore(team: Team, tab: Tab) -> TeamStore {
+    func makeTeamStore(team: Team, tab: TabType) -> TeamStore {
         return TeamStore(team: team, router: router, tab: tab)
     }
     
-    func makeEmployeeStore(employee: Employee, tab: Tab) -> EmployeeStore {
+    func makeEmployeeStore(employee: Employee, tab: TabType) -> EmployeeStore {
         return EmployeeStore(employee: employee, router: router, tab: tab)
     }
 }
