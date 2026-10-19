@@ -23,4 +23,10 @@ final class AppRouter {
         profilePath = NavigationPath()
         infoPath = NavigationPath()
     }
+    
+    func openTimeAllocations() {
+        selectedTab = .profile
+        profilePath = NavigationPath()
+        profilePath.append(ProfileRoute.timeAllocation)
+    }
 }

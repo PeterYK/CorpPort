@@ -18,6 +18,7 @@ enum ProfileRoute: Hashable {
     case timeAllocation
     case myTeam(Team)
     case employee(Employee)
+    case settings
 }
 
 enum TeamsEmployeesRoute: Hashable {

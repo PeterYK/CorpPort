@@ -76,6 +76,15 @@ final class TimeAllocationStore {
             }
         }
     }
+    
+    func reset() {
+        selectedDate = Date()
+        currentMonth = Date()
+        favoriteProjects = []
+        missedCount = 0
+        showAddProject = false
+        isSaving = false
+    }
 }
 
 extension TimeAllocationStore {

@@ -11,6 +11,7 @@ import Foundation
 final class RootStore {
     @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
     @ObservationIgnored private var networkService: NetworkService = ServiceLocator.shared.getService()
+    @ObservationIgnored private var notificationService: NotificationService = ServiceLocator.shared.getService()
 
     let loginStore: LoginStore
     let wallStore: WallStore
@@ -19,10 +20,10 @@ final class RootStore {
     let employeesStore: EmployeesStore
     let profileStore: ProfileStore
     let timeAllocationStore: TimeAllocationStore
+    let settingsStore: AppSettingsStore
 
-    // в init
     private let router: AppRouter
-
+    
     init(appState: AppState, router: AppRouter) {
         self.router = router
         self.loginStore = LoginStore(appState: appState)
@@ -32,6 +33,7 @@ final class RootStore {
         self.employeesStore = EmployeesStore(router: router)
         self.profileStore = ProfileStore(router: router, appState: appState, dataService: dataService)
         self.timeAllocationStore = TimeAllocationStore(dataService: dataService, networkService: networkService)
+        self.settingsStore = AppSettingsStore(notificationService: notificationService)
     }
     
     func makeTeamStore(team: Team, tab: TabType) -> TeamStore {
@@ -40,5 +42,12 @@ final class RootStore {
     
     func makeEmployeeStore(employee: Employee, tab: TabType) -> EmployeeStore {
         return EmployeeStore(employee: employee, router: router, tab: tab)
+    }
+    
+    func logout() {
+        router.resetAllPaths()
+        dataService.reset()
+        timeAllocationStore.reset()
+        wallStore.reset()
     }
 }

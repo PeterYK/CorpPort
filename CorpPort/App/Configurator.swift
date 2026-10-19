@@ -29,5 +29,6 @@ class Configurator {
         
         let dataService = AppDataService(networkService: networkService)
         serviceLocator.addService(DataService.self, service: dataService)
+        serviceLocator.addService(NotificationService.self, service: AppNotificationService())
     }
 }

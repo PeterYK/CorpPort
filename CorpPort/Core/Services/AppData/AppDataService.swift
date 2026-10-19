@@ -67,4 +67,13 @@ final class AppDataService: DataService {
         
         projects = projDTO.map { Project(id: $0.id, name: $0.name) }
     }
+    
+    func reset() {
+        employees = []
+        teams = []
+        wallPosts = []
+        infoArticles = []
+        projects = []
+        userProfile = nil
+    }
 }

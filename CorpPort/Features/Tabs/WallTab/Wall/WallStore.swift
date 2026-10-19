@@ -44,4 +44,8 @@ final class WallStore {
             }
         }
     }
+    
+    func reset() {
+        selectedTag = nil
+    }
 }

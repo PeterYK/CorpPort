@@ -22,6 +22,9 @@ struct ProfileView: View {
                         tileButton(title: "Моя команда", icon: "person.3") {
                             rootStore.profileStore.dispatch(.teamTapped)
                         }
+                        tileButton(title: "Настройки", icon: "gearshape") {
+                                rootStore.profileStore.dispatch(.settingsTapped)
+                            }
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
@@ -83,6 +86,7 @@ struct ProfileView: View {
                     // Выход
                     Button("Выйти") {
                         rootStore.profileStore.dispatch(.logoutTapped)
+                        rootStore.logout()
                     }
                     .foregroundStyle(.red)
                     .padding(.top, 20)

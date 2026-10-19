@@ -12,4 +12,5 @@ enum ProfileActions {
     case teamTapped
     case timeAllocationTapped
     case logoutTapped
+    case settingsTapped
 }
