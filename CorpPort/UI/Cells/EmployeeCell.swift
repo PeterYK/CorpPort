@@ -32,8 +32,8 @@ struct EmployeeCell: View {
                 
                 // Дополнительная информация (демо)
                 HStack(spacing: 8) {
-                    Text("Mobile")
-                    Text("Москва")
+                    Text(employee.team?.name ?? " - ")
+                    Text(employee.city ?? " - ")
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
