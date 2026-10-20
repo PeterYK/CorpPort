@@ -34,6 +34,9 @@ struct CorporatePortalApp: App {
                 .environment(appRouter)
                 .environment(appState)
                 .environment(rootStore)
+                .task {
+                    await rootStore.loginStore.tryAutoLogin()
+                }
         }
     }
     

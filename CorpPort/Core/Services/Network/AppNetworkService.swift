@@ -8,6 +8,9 @@
 import Foundation
 
 final class AppNetworkService: NetworkService {
+    
+    public init() {}
+
     func fetchUserProfile() async throws -> UserProfileDTO {
         return MockData.userProfile
     }
@@ -38,5 +41,11 @@ final class AppNetworkService: NetworkService {
 
     func saveDayAllocation(_ allocation: DayAllocationDTO) async throws {}
     
-    public init() {}
+    func login(login: String, password: String) async throws -> String {
+        throw URLError(.unknown)
+    }
+
+    func validateToken(_ token: String) async throws -> Bool {
+        throw URLError(.unknown)
+    }
 }

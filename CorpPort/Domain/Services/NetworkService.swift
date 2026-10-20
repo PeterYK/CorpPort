@@ -8,7 +8,12 @@
 import Foundation
 
 protocol NetworkService {
+    
+    func login(login: String, password: String) async throws -> String
+    func validateToken(_ token: String) async throws -> Bool
+    
     func fetchUserProfile() async throws -> UserProfileDTO
+    
     func fetchEmployees() async throws -> [EmployeeDTO]
     func fetchTeams() async throws -> [TeamDTO]
     func fetchWallPosts() async throws -> [WallPostDTO]

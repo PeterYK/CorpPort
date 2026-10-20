@@ -10,13 +10,24 @@ import SwiftUI
 @Observable
 final class LoginStore {
     @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
-    @ObservationIgnored private var NetworkService: NetworkService = ServiceLocator.shared.getService()
+    @ObservationIgnored private var networkService: NetworkService = ServiceLocator.shared.getService()
+    @ObservationIgnored private var keychainService: KeychainService = ServiceLocator.shared.getService()
+    
     private let appState: AppState
     
     var login = ""
     var password = ""
     var isLoading = false
     var errorMessage: String?
+    
+    var appVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        if let build {
+            return "\(version) (\(build))"
+        }
+        return version
+    }
     
     init(appState: AppState) {
         self.appState = appState
@@ -38,11 +49,15 @@ final class LoginStore {
             appState.isAuthenticated = true
             login = ""
             password = ""
+            
         case .loginFailed(let message):
             isLoading = false
             errorMessage = message
         }
     }
+}
+
+extension LoginStore {
     
     private func performLogin() {
         guard !login.isEmpty, !password.isEmpty else { return }
@@ -50,18 +65,42 @@ final class LoginStore {
         isLoading = true
         errorMessage = nil
         
-        // TODO: Пока без реальной проверки
         Task {
             do {
+                let token = try await networkService.login(login: login, password: password)
+                keychainService.saveToken(token)
+                
                 try await dataService.loadAllData()
+                
                 await MainActor.run {
                     dispatch(.loginSucceeded)
                 }
             } catch {
                 await MainActor.run {
-                    dispatch(.loginFailed("Не удалось загрузить данные"))
+                    dispatch(.loginFailed("Неверный логин или пароль"))
                 }
             }
+        }
+    }
+    
+    func tryAutoLogin() async {
+        guard let token = keychainService.getToken() else { return }
+        isLoading = true
+
+        do {
+            let isValid = try await networkService.validateToken(token)
+            if isValid {
+                try await dataService.loadAllData()
+                await MainActor.run {
+                    dispatch(.loginSucceeded)
+                }
+            } else {
+                keychainService.deleteToken()
+                isLoading = false
+            }
+        } catch {
+            keychainService.deleteToken()
+            isLoading = false
         }
     }
 }

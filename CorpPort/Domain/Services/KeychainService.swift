@@ -7,4 +7,9 @@
 
 import Foundation
 
-protocol KeychainService { }
+protocol KeychainService {
+    func saveToken(_ token: String)
+    func getToken() -> String?
+    func deleteToken()
+    func reset()
+}

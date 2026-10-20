@@ -12,6 +12,7 @@ final class RootStore {
     @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
     @ObservationIgnored private var networkService: NetworkService = ServiceLocator.shared.getService()
     @ObservationIgnored private var notificationService: NotificationService = ServiceLocator.shared.getService()
+    @ObservationIgnored private var KeychainService: KeychainService = ServiceLocator.shared.getService()
 
     let loginStore: LoginStore
     let wallStore: WallStore
@@ -49,5 +50,6 @@ final class RootStore {
         dataService.reset()
         timeAllocationStore.reset()
         wallStore.reset()
+        KeychainService.reset()
     }
 }
