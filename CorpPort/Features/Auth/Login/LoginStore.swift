@@ -18,6 +18,15 @@ final class LoginStore {
     var isLoading = false
     var errorMessage: String?
     
+    var appVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        if let build {
+            return "\(version) (\(build))"
+        }
+        return version
+    }
+    
     init(appState: AppState) {
         self.appState = appState
     }
