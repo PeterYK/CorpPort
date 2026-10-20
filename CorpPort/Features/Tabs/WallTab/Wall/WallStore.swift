@@ -42,6 +42,8 @@ final class WallStore {
             } else {
                 selectedTag = nil
             }
+        case .usefulInfoTapped:
+            router.wallPath.append(WallRoute.info)
         }
     }
     

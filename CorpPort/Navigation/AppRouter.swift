@@ -14,14 +14,12 @@ final class AppRouter {
     var wallPath = NavigationPath()
     var employeesPath = NavigationPath()
     var profilePath = NavigationPath()
-    var infoPath = NavigationPath()
     
     func resetAllPaths() {
         selectedTab = .wall
         wallPath = NavigationPath()
         employeesPath = NavigationPath()
         profilePath = NavigationPath()
-        infoPath = NavigationPath()
     }
     
     func openTimeAllocations() {

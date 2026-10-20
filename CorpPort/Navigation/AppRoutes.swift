@@ -11,7 +11,6 @@ enum TabType: Hashable {
     case wall
     case employees
     case profile
-    case info
 }
 
 enum ProfileRoute: Hashable {
@@ -26,10 +25,8 @@ enum TeamsEmployeesRoute: Hashable {
     case team(Team)
 }
 
-enum InfoRoute: Hashable {
-    case article(InfoArticle)
-}
-
 enum WallRoute: Hashable {
     case post(WallPost)
+    case info
+    case article(InfoArticle)
 }
