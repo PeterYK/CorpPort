@@ -51,3 +51,20 @@ final class MockNetworkService: NetworkService {
         print("Сохранено: \(allocation.date)")
     }
 }
+
+//MARK: - authorization
+extension MockNetworkService {
+    func login(login: String, password: String) async throws -> String {
+        try await Task.sleep(for: .milliseconds(4000))
+        guard login == "d.fedorova",
+         password == "000000" else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        return "mock_token_\(UUID().uuidString.prefix(8))"
+    }
+
+    func validateToken(_ token: String) async throws -> Bool {
+        try await Task.sleep(for: .milliseconds(4000))
+        return token.hasPrefix("mock_token_")
+    }
+}

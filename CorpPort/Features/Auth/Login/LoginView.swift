@@ -35,12 +35,14 @@ struct LoginView: View {
                 .textFieldStyle(.roundedBorder)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                .disabled(store.isLoading)
                 
                 SecureField("Пароль", text: Binding(
                     get: { store.password },
                     set: { store.dispatch(.passwordChanged($0)) }
                 ))
                 .textFieldStyle(.roundedBorder)
+                .disabled(store.isLoading)
                 
                 if let error = store.errorMessage {
                     Text(error)
@@ -55,8 +57,8 @@ struct LoginView: View {
                 store.dispatch(.loginTapped)
             } label: {
                 if store.isLoading {
-                    ProgressView()
-                        .tint(.white)
+                    LogoProgressView()
+                        .frame(height: 24)
                 } else {
                     Text("Войти")
                         .frame(maxWidth: .infinity)
