@@ -11,39 +11,60 @@ struct AppSettingsView: View {
     @Environment(RootStore.self) var rootStore
     
     var body: some View {
-        @Bindable var store = rootStore.settingsStore
-        
         List {
-            Section("Уведомления") {
-                Toggle("Напоминание о ТРЗ", isOn: Binding(
-                    get: { store.isDailyReminderEnabled },
-                    set: { store.dispatch(.toggleDailyReminder($0)) }
-                ))
-                
-                if store.isDailyReminderEnabled {
-                    DatePicker(
-                        "Время",
-                        selection: Binding(
-                            get: { store.reminderTime },
-                            set: { store.dispatch(.setReminderTime($0)) }
-                        ),
-                        displayedComponents: .hourAndMinute
-                    )
-                }
-                
-                Button("Открыть настройки уведомлений") {
-                    store.dispatch(.openNotificationSettings)
-                }
-            }
+            notificationSection()
+            appThemeSection()
         }
         .navigationTitle("Настройки")
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) {
-            Text("Версия: \(store.appVersion)")
+            Text("Версия: \(rootStore.settingsStore.appVersion)")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
+        }
+    }
+}
+
+extension AppSettingsView {
+    private func notificationSection() -> some View {
+        Section("Уведомления") {
+            Toggle("Напоминание о ТРЗ", isOn: Binding(
+                get: { rootStore.settingsStore.isDailyReminderEnabled },
+                set: { rootStore.settingsStore.dispatch(.toggleDailyReminder($0)) }
+            ))
+            
+            if rootStore.settingsStore.isDailyReminderEnabled {
+                DatePicker(
+                    "Время",
+                    selection: Binding(
+                        get: { rootStore.settingsStore.reminderTime },
+                        set: { rootStore.settingsStore.dispatch(.setReminderTime($0)) }
+                    ),
+                    displayedComponents: .hourAndMinute
+                )
+            }
+            
+            Button("Открыть настройки уведомлений") {
+                rootStore.settingsStore.dispatch(.openNotificationSettings)
+            }
+        }
+    }
+    
+    private func appThemeSection() -> some View {
+        Section("Оформление") {
+            Toggle("Системная тема", isOn: Binding(
+                get: { rootStore.settingsStore.useSystemTheme },
+                set: { rootStore.settingsStore.dispatch(.toggleSystemTheme($0)) }
+            ))
+            
+            if !rootStore.settingsStore.useSystemTheme {
+                Toggle("Тёмная тема", isOn: Binding(
+                    get: { rootStore.settingsStore.isDarkMode },
+                    set: { rootStore.settingsStore.dispatch(.toggleDarkMode($0)) }
+                ))
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimeAllocationView: View {
     @Environment(RootStore.self) var rootStore
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         @Bindable var store = rootStore.timeAllocationStore
@@ -51,6 +52,7 @@ struct TimeAllocationView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+                .foregroundStyle(colorScheme == .dark ? .black : .white)
                 .padding(.horizontal)
                 
                 Button {
@@ -64,6 +66,7 @@ struct TimeAllocationView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
+                .foregroundStyle(colorScheme == .dark ? .black : .white)
                 .disabled(store.isSaving)
                 .padding(.horizontal)
             }

@@ -9,4 +9,5 @@ import Foundation
 
 enum EmployeesActions {
     case employeeTapped(Employee)
+    case searchTextChanged(String)
 }

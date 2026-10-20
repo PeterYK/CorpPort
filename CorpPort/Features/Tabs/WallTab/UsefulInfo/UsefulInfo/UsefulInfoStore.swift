@@ -25,7 +25,7 @@ final class UsefulInfoStore {
     func dispatch(_ action: UsefulInfoActions) {
         switch action {
         case .articleTapped(let article):
-            router.infoPath.append(InfoRoute.article(article))
+            router.wallPath.append(WallRoute.article(article))
         }
     }
     

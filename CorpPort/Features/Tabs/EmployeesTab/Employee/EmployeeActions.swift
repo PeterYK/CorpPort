@@ -11,4 +11,5 @@ enum EmployeeActions {
     case employeeTapped(Employee)
     case teamTapped
     case emailTapped
+    case telegramTapped
 }

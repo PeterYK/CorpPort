@@ -21,6 +21,14 @@ struct MainTabView: View {
                         switch route {
                         case .post(let post):
                             WallPostView(post: post)
+                        case .info:
+                            UsefulInfoView()
+                        case .article(let article):
+                            InfoArticleView(article: article, rootStore: rootStore)
+                        case .employee(let employee):
+                            EmployeeView(employee: employee, tab: .wall, rootStore: rootStore)
+                        case .team(let team):
+                            TeamView(team: team, tab: .wall, rootStore: rootStore)
                         }
                     }
             }
@@ -59,18 +67,6 @@ struct MainTabView: View {
             .tabItem { Label("Кабинет", systemImage: "person.circle") }
             .tag(TabType.profile)
             .badge(rootStore.timeAllocationStore.missedCount)
-            
-            NavigationStack(path: $router.infoPath) {
-                UsefulInfoView()
-                    .navigationDestination(for: InfoRoute.self) { route in
-                        switch route {
-                        case .article(let article):
-                            InfoArticleView(article: article)
-                        }
-                    }
-            }
-            .tabItem { Label("Инфо", systemImage: "info.circle") }
-            .tag(TabType.info)
         }
         .tint(.brand)
         .task {

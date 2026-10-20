@@ -28,57 +28,44 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
-                    HStack(spacing: 16) {
-                        Circle()
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 80, height: 80)
-                            .overlay {
-                                Image(systemName: "person.fill")
-                                    .font(.system(size: 32))
-                                    .foregroundStyle(.gray)
-                            }
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(userProfile.name)
-                                .font(.title2.bold())
-                        }
-                        
-                        Spacer()
-                    }
+                    
+                    avatarBlock(name: userProfile.name)
                     .padding(.horizontal)
                     .padding(.top, 10)
+                    
                     // Информация
-                    VStack(alignment: .leading, spacing: 12) {
-                        infoRow(title: "Роль", value: userProfile.position)
-                        
-                        // Интерактивная команда
-                        Button {
-                            rootStore.profileStore.dispatch(.teamTapped)
-                        } label: {
-                            infoRow(title: "Команда", value: team.name, isInteractive: true)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        // Интерактивный руководитель
-                        if let manager = userProfile.manager {
-                            Button {
-                                rootStore.profileStore.dispatch(.employeeTapped)
-                            } label: {
-                                infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                        
-                        if let location = userProfile.city {
-                            infoRow(title: "Локация", value: location)
-                        }
-                        if let birthday = userProfile.birthday {
-                            infoRow(title: "День рождения", value: birthday)
-                        }
-                        if let email = userProfile.email {
-                            infoRow(title: "Почта", value: email)
-                        }
-                    }
+//                    VStack(alignment: .leading, spacing: 12) {
+//                        infoRow(title: "Роль", value: userProfile.position)
+//                        
+//                        // Интерактивная команда
+//                        Button {
+//                            rootStore.profileStore.dispatch(.teamTapped)
+//                        } label: {
+//                            infoRow(title: "Команда", value: team.name, isInteractive: true)
+//                        }
+//                        .buttonStyle(.plain)
+//                        
+//                        // Интерактивный руководитель
+//                        if let manager = userProfile.manager {
+//                            Button {
+//                                rootStore.profileStore.dispatch(.employeeTapped)
+//                            } label: {
+//                                infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
+//                            }
+//                            .buttonStyle(.plain)
+//                        }
+//                        
+//                        if let location = userProfile.city {
+//                            infoRow(title: "Локация", value: location)
+//                        }
+//                        if let birthday = userProfile.birthday {
+//                            infoRow(title: "День рождения", value: birthday)
+//                        }
+//                        if let email = userProfile.email {
+//                            infoRow(title: "Почта", value: email)
+//                        }
+//                    }
+                    userInfoBlock(userProfile: userProfile, team: team)
                     .padding(.horizontal)
                     
                     Spacer()
@@ -120,6 +107,66 @@ extension ProfileView {
         }
     }
     
+    private func avatarBlock(name: String) -> some View {
+        HStack(spacing: 16) {
+            Circle()
+                .fill(Color.gray.opacity(0.2))
+                .frame(width: 80, height: 80)
+                .overlay {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 32))
+                        .foregroundStyle(.gray)
+                }
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(name)
+                    .font(.title2.bold())
+            }
+            
+            Spacer()
+        }
+    }
+    
+    private func userInfoBlock(userProfile: UserProfile, team: Team) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            infoRow(title: "Роль", value: userProfile.position)
+            
+            // Интерактивная команда
+            Button {
+                rootStore.profileStore.dispatch(.teamTapped)
+            } label: {
+                infoRow(title: "Команда", value: team.name, isInteractive: true)
+            }
+            .buttonStyle(.plain)
+            
+            // Интерактивный руководитель
+            if let manager = userProfile.manager {
+                Button {
+                    rootStore.profileStore.dispatch(.employeeTapped)
+                } label: {
+                    infoRow(title: "Руководитель", value: manager.name, isInteractive: true)
+                }
+                .buttonStyle(.plain)
+            }
+            
+            if let location = userProfile.city {
+                infoRow(title: "Локация", value: location)
+            }
+            
+            if let birthday = userProfile.birthday {
+                infoRow(title: "День рождения", value: birthday)
+            }
+            
+            if let email = userProfile.email {
+                infoRow(title: "Почта", value: email)
+            }
+            
+            if let tg = userProfile.tg {
+                infoRow(title: "Telegram", value: tg)
+            }
+        }
+    }
+
     private func tileButton(
         title: String,
         icon: String,
@@ -131,7 +178,7 @@ extension ProfileView {
                 VStack(spacing: 8) {
                     Image(systemName: icon)
                         .font(.title2)
-                        .tint(Color.brand)
+                        .foregroundStyle(Color.brand)
                     Text(title)
                         .font(.subheadline.weight(.medium))
                 }

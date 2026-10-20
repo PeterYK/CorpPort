@@ -86,7 +86,7 @@ extension LoginStore {
     func tryAutoLogin() async {
         guard let token = keychainService.getToken() else { return }
         isLoading = true
-
+        
         do {
             let isValid = try await networkService.validateToken(token)
             if isValid {

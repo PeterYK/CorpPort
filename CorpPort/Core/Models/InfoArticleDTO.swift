@@ -11,4 +11,5 @@ struct InfoArticleDTO: Codable, Identifiable {
     let id: Int
     let title: String
     let content: String
+    let contactIds: [Int]
 }
