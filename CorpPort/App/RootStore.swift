@@ -45,6 +45,10 @@ final class RootStore {
         return EmployeeStore(employee: employee, router: router, tab: tab)
     }
     
+    func makeInfoArticleStore(article: InfoArticle) -> InfoArticleStore {
+        return InfoArticleStore(article: article, router: router)
+    }
+    
     func logout() {
         router.resetAllPaths()
         dataService.reset()

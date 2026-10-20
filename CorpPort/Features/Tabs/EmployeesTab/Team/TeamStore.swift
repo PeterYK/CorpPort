@@ -24,8 +24,10 @@ final class TeamStore {
         case .employeeTapped(let employee):
             if tab == .employees {
                 router.employeesPath.append(TeamsEmployeesRoute.employee(employee))
-            } else {
+            } else if tab == .profile {
                 router.profilePath.append(ProfileRoute.employee(employee))
+            } else {
+                router.wallPath.append(WallRoute.employee(employee))
             }
         }
     }

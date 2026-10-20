@@ -58,12 +58,7 @@ final class AppDataService: DataService {
             )
         }
         
-        infoArticles = artDTO.map { dto in
-            InfoArticle(
-                title: dto.title,
-                content: dto.content
-            )
-        }
+        infoArticles = MockDataMapper.map(articlesDTO: artDTO, employees: employees)
         
         projects = projDTO.map { Project(id: $0.id, name: $0.name) }
     }

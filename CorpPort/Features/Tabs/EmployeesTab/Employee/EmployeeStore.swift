@@ -38,16 +38,20 @@ final class EmployeeStore {
         case .employeeTapped(let employee):
             if tab == .employees {
                 router.employeesPath.append(TeamsEmployeesRoute.employee(employee))
-            } else {
+            } else if tab == .profile {
                 router.profilePath.append(ProfileRoute.employee(employee))
+            } else {
+                router.wallPath.append(WallRoute.employee(employee))
             }
             
         case .teamTapped:
             if let team = employee.team {
                 if tab == .employees {
                     router.employeesPath.append(TeamsEmployeesRoute.team(team))
-                } else {
+                } else if tab == .profile{
                     router.profilePath.append(ProfileRoute.myTeam(team))
+                } else {
+                    router.wallPath.append(WallRoute.team(team))
                 }
             }
             

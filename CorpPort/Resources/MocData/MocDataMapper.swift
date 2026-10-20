@@ -112,4 +112,21 @@ enum MockDataMapper {
             
             return userProfile
     }
+    
+    static func map(
+        articlesDTO: [InfoArticleDTO],
+        employees: [Employee]
+    ) -> [InfoArticle] {
+        articlesDTO.map { dto in
+            let contacts = dto.contactIds.compactMap { id in
+                employees.first { $0.id == id }
+            }
+            return InfoArticle(
+                id: dto.id,
+                title: dto.title,
+                content: dto.content,
+                contacts: contacts
+            )
+        }
+    }
 }

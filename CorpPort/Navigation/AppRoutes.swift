@@ -29,4 +29,6 @@ enum WallRoute: Hashable {
     case post(WallPost)
     case info
     case article(InfoArticle)
+    case employee(Employee)
+    case team(Team)
 }

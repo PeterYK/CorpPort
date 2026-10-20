@@ -24,7 +24,12 @@ struct MainTabView: View {
                         case .info:
                             UsefulInfoView()
                         case .article(let article):
-                            InfoArticleView(article: article)                        }
+                            InfoArticleView(article: article, rootStore: rootStore)
+                        case .employee(let employee):
+                            EmployeeView(employee: employee, tab: .wall, rootStore: rootStore)
+                        case .team(let team):
+                            TeamView(team: team, tab: .wall, rootStore: rootStore)
+                        }
                     }
             }
             .tabItem { Label("Стена", systemImage: "newspaper") }
