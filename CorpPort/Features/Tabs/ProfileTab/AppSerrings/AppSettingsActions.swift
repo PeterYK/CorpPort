@@ -11,4 +11,6 @@ enum AppSettingsActions {
     case toggleDailyReminder(Bool)
     case setReminderTime(Date)
     case openNotificationSettings
+    case toggleSystemTheme(Bool)
+    case toggleDarkMode(Bool)
 }

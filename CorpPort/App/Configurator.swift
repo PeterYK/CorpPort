@@ -10,7 +10,7 @@ import Foundation
 class Configurator {
     private let serviceLocator = ServiceLocator.shared
     private let isDebug: Bool = true
-
+    
     init () {
         self.setup()
     }

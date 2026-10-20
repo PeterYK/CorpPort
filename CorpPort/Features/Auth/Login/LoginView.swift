@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(RootStore.self) var rootStore
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         let store = rootStore.loginStore
@@ -65,6 +66,7 @@ struct LoginView: View {
                 }
             }
             .buttonStyle(.borderedProminent)
+            .foregroundStyle(colorScheme == .dark ? .black : .white)
             .tint(.brand)
             .disabled(store.isLoading || store.login.isEmpty || store.password.isEmpty)
             .padding(.horizontal, 32)
@@ -79,6 +81,6 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
         }
-
+        
     }
 }

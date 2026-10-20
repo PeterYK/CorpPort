@@ -13,7 +13,7 @@ final class RootStore {
     @ObservationIgnored private var networkService: NetworkService = ServiceLocator.shared.getService()
     @ObservationIgnored private var notificationService: NotificationService = ServiceLocator.shared.getService()
     @ObservationIgnored private var KeychainService: KeychainService = ServiceLocator.shared.getService()
-
+    
     let loginStore: LoginStore
     let wallStore: WallStore
     let infoStore: UsefulInfoStore
@@ -22,7 +22,7 @@ final class RootStore {
     let profileStore: ProfileStore
     let timeAllocationStore: TimeAllocationStore
     let settingsStore: AppSettingsStore
-
+    
     private let router: AppRouter
     
     init(appState: AppState, router: AppRouter) {

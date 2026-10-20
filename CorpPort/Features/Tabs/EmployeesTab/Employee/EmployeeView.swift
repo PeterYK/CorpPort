@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmployeeView: View {
     let store: EmployeeStore
-
+    
     init(employee: Employee, tab: TabType, rootStore: RootStore) {
         self.store = rootStore.makeEmployeeStore(employee: employee, tab: tab)
     }
@@ -19,10 +19,10 @@ struct EmployeeView: View {
             VStack(spacing: 24) {
                 
                 avatarBlock(name: store.employee.name)
-                .padding(.top)
-
+                    .padding(.top)
+                
                 userInfoBlock(store: store)
-                .padding(.horizontal)
+                    .padding(.horizontal)
                 
                 // Подчинённые
                 if store.isLeader, let subordinates = store.subordinates, !subordinates.isEmpty {

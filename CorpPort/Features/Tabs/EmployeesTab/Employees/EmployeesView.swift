@@ -13,7 +13,7 @@ struct EmployeesView: View {
     var body: some View {
         VStack(spacing: 0) {
             searchView()
-
+            
             List(rootStore.employeesStore.filteredEmployees) { employee in
                 Button {
                     rootStore.employeesStore.dispatch(.employeeTapped(employee))

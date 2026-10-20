@@ -74,7 +74,7 @@ extension EmployeeStore {
         guard let url = URL(string: "mailto:\(cleaned)") else { return }
         UIApplication.shared.open(url)
     }
-
+    
     private func openTelegram(_ username: String) {
         let cleaned = username
             .trimmingCharacters(in: .whitespacesAndNewlines)

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-//import SwiftData
 
 @main
 struct CorporatePortalApp: App {
@@ -17,7 +16,7 @@ struct CorporatePortalApp: App {
     
     init() {
         Thread.sleep(forTimeInterval: 2.0)   // TODO: - задержка для отображения LaumchScreen
-
+        
         let appState = AppState()
         let appRouter = AppRouter()
         
@@ -34,6 +33,7 @@ struct CorporatePortalApp: App {
                 .environment(appRouter)
                 .environment(appState)
                 .environment(rootStore)
+                .preferredColorScheme(rootStore.settingsStore.colorScheme)
                 .task {
                     await rootStore.loginStore.tryAutoLogin()
                 }

@@ -11,30 +11,44 @@ import SwiftUI
 final class AppSettingsStore {
     private let notificationService: NotificationService
     private let reminderTimeKey = "trz_reminder_time"
+    private let useSystemThemeKey = "use_system_theme"
+    private let isDarkModeKey = "is_dark_mode"
     
     var isDailyReminderEnabled = false
     var reminderTime: Date {
-        didSet {
-            saveReminderTime()
-        }
+        didSet { saveReminderTime() }
+    }
+    
+    var useSystemTheme: Bool {
+        didSet { UserDefaults.standard.set(useSystemTheme, forKey: useSystemThemeKey) }
+    }
+    
+    var isDarkMode: Bool {
+        didSet { UserDefaults.standard.set(isDarkMode, forKey: isDarkModeKey) }
+    }
+    
+    var colorScheme: ColorScheme? {
+        useSystemTheme ? nil : (isDarkMode ? .dark : .light)
     }
     
     var appVersion: String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-        if let build {
-            return "\(version) (\(build))"
-        }
+        if let build { return "\(version) (\(build))" }
         return version
     }
     
     init(notificationService: NotificationService) {
         self.notificationService = notificationService
+        
         if let saved = UserDefaults.standard.object(forKey: reminderTimeKey) as? Date {
             self.reminderTime = saved
         } else {
             self.reminderTime = Calendar.current.date(from: DateComponents(hour: 18, minute: 0)) ?? Date()
         }
+        
+        self.useSystemTheme = UserDefaults.standard.object(forKey: useSystemThemeKey) as? Bool ?? true
+        self.isDarkMode = UserDefaults.standard.object(forKey: isDarkModeKey) as? Bool ?? false
         
         checkCurrentStatus()
     }
@@ -47,25 +61,28 @@ final class AppSettingsStore {
                     let granted = await requestPermission()
                     await MainActor.run {
                         isDailyReminderEnabled = granted
-                        if granted {
-                            updateReminder()
-                        }
+                        if granted { updateReminder() }
                     }
                 }
             } else {
                 isDailyReminderEnabled = false
                 notificationService.cancelDailyTRZReminder()
             }
+            
         case .setReminderTime(let date):
             reminderTime = date
-            if isDailyReminderEnabled {
-                updateReminder()
-            }
+            if isDailyReminderEnabled { updateReminder() }
             
         case .openNotificationSettings:
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url)
             }
+            
+        case .toggleSystemTheme(let isOn):
+            useSystemTheme = isOn
+            
+        case .toggleDarkMode(let isOn):
+            isDarkMode = isOn
         }
     }
 }
