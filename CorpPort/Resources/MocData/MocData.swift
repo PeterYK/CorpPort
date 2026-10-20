@@ -12,64 +12,64 @@ enum MockData {
     // MARK: - Сотрудники
     static let employees: [EmployeeDTO] = [
         // Администрация
-        .init(id: 10000001, name: "Александр Волков", position: "Генеральный директор", teamId: 20000001, managerId: nil, city: "Москва", birthday: "12.04.1978", email: "a.volkov@company.ru", telegram: "@avolkov"),
-        .init(id: 10000002, name: "Елена Соколова", position: "Финансовый директор", teamId: 20000001, managerId: 10000001, city: "Москва", birthday: "03.09.1982", email: "e.sokolova@company.ru", telegram: "@esokolova"),
-        .init(id: 10000003, name: "Дмитрий Орлов", position: "Технический директор", teamId: 20000001, managerId: 10000001, city: "Москва", birthday: "21.11.1980", email: "d.orlov@company.ru", telegram: "@dorlov"),
-        .init(id: 10000004, name: "Марина Кузнецова", position: "Главный юрист", teamId: 20000001, managerId: 10000001, city: "Москва", birthday: "15.06.1985", email: "m.kuznetsova@company.ru", telegram: "@mkuznetsova"),
+        .init(id: 10000001, name: "Александр Волков", position: "Генеральный директор", teamId: 20000001, managerId: nil, city: "Москва", birthday: "12.04.1978", email: "a.volkov@company.ru", telegram: "@telegram"),
+        .init(id: 10000002, name: "Елена Соколова", position: "Финансовый директор", teamId: 20000001, managerId: 10000001, city: "Москва", birthday: "03.09.1982", email: "e.sokolova@company.ru", telegram: "@telegram"),
+        .init(id: 10000003, name: "Дмитрий Орлов", position: "Технический директор", teamId: 20000001, managerId: 10000001, city: "Москва", birthday: "21.11.1980", email: "d.orlov@company.ru", telegram: "@telegram"),
+        .init(id: 10000004, name: "Марина Кузнецова", position: "Главный юрист", teamId: 20000001, managerId: 10000001, city: "Москва", birthday: "15.06.1985", email: "m.kuznetsova@company.ru", telegram: "@telegram"),
         
         // Бухгалтерия
-        .init(id: 10000005, name: "Ольга Новикова", position: "Главный бухгалтер", teamId: 20000002, managerId: 10000002, city: "Москва", birthday: "08.02.1988", email: "o.novikova@company.ru", telegram: nil),
-        .init(id: 10000006, name: "Анна Белова", position: "Бухгалтер", teamId: 20000002, managerId: 10000002, city: "Москва", birthday: "19.07.1992", email: "a.belova@company.ru", telegram: nil),
-        .init(id: 10000007, name: "Сергей Морозов", position: "Бухгалтер", teamId: 20000002, managerId: 10000002, city: "Москва", birthday: "30.10.1990", email: "s.morozov@company.ru", telegram: nil),
+        .init(id: 10000005, name: "Ольга Новикова", position: "Главный бухгалтер", teamId: 20000002, managerId: 10000002, city: "Москва", birthday: "08.02.1988", email: "o.novikova@company.ru", telegram: "@telegram"),
+        .init(id: 10000006, name: "Анна Белова", position: "Бухгалтер", teamId: 20000002, managerId: 10000002, city: "Москва", birthday: "19.07.1992", email: "a.belova@company.ru", telegram: "@telegram"),
+        .init(id: 10000007, name: "Сергей Морозов", position: "Бухгалтер", teamId: 20000002, managerId: 10000002, city: "Москва", birthday: "30.10.1990", email: "s.morozov@company.ru", telegram: "@telegram"),
         
         // Юридический отдел
-        .init(id: 10000008, name: "Игорь Лебедев", position: "Юрист", teamId: 20000003, managerId: 10000004, city: "Москва", birthday: "05.03.1991", email: "i.lebedev@company.ru", telegram: nil),
-        .init(id: 10000009, name: "Татьяна Павлова", position: "Юрист", teamId: 20000003, managerId: 10000004, city: "Москва", birthday: "14.12.1993", email: "t.pavlova@company.ru", telegram: nil),
+        .init(id: 10000008, name: "Игорь Лебедев", position: "Юрист", teamId: 20000003, managerId: 10000004, city: "Москва", birthday: "05.03.1991", email: "i.lebedev@company.ru", telegram: "@telegram"),
+        .init(id: 10000009, name: "Татьяна Павлова", position: "Юрист", teamId: 20000003, managerId: 10000004, city: "Москва", birthday: "14.12.1993", email: "t.pavlova@company.ru", telegram: "@telegram"),
         
         // Лиды технического отдела
-        .init(id: 10000010, name: "Алексей Смирнов", position: "Лид мобильной разработки", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "22.05.1987", email: "a.smirnov@company.ru", telegram: "@asmirnov"),
-        .init(id: 10000011, name: "Павел Иванов", position: "Лид backend-разработки", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "09.08.1986", email: "p.ivanov@company.ru", telegram: "@pivanov"),
-        .init(id: 10000012, name: "Наталья Козлова", position: "Лид frontend-разработки", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "17.01.1989", email: "n.kozlova@company.ru", telegram: "@nkozlova"),
-        .init(id: 10000013, name: "Екатерина Васильева", position: "Лид дизайна", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "28.04.1990", email: "e.vasileva@company.ru", telegram: "@evas"),
+        .init(id: 10000010, name: "Алексей Смирнов", position: "Лид мобильной разработки", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "22.05.1987", email: "a.smirnov@company.ru", telegram: "@telegram"),
+        .init(id: 10000011, name: "Павел Иванов", position: "Лид backend-разработки", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "09.08.1986", email: "p.ivanov@company.ru", telegram: "@telegram"),
+        .init(id: 10000012, name: "Наталья Козлова", position: "Лид frontend-разработки", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "17.01.1989", email: "n.kozlova@company.ru", telegram: "@telegram"),
+        .init(id: 10000013, name: "Екатерина Васильева", position: "Лид дизайна", teamId: 20000004, managerId: 10000003, city: "Москва", birthday: "28.04.1990", email: "e.vasileva@company.ru", telegram: "@telegram"),
         
         // Мобильная разработка
-        .init(id: 10000014, name: "Иван Петров", position: "iOS-разработчик", teamId: 20000005, managerId: 10000010, city: "Москва", birthday: "11.06.1995", email: "i.petrov@company.ru", telegram: nil),
-        .init(id: 10000015, name: "Мария Сидорова", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Санкт-Петербург", birthday: "23.09.1996", email: "m.sidorova@company.ru", telegram: nil),
-        .init(id: 10000016, name: "Артём Кузьмин", position: "iOS-разработчик", teamId: 20000005, managerId: 10000010, city: "Москва", birthday: "04.02.1994", email: "a.kuzmin@company.ru", telegram: nil),
-        .init(id: 10000017, name: "Дарья Фёдорова", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Казань", birthday: "16.11.1997", email: "d.fedorova@company.ru", telegram: nil),
-        .init(id: 10000018, name: "Никита Орлов", position: "iOS-разработчик", teamId: 20000005, managerId: 10000010, city: "Москва", birthday: "29.07.1993", email: "n.orlov@company.ru", telegram: nil),
-        .init(id: 10000019, name: "София Лебедева", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Новосибирск", birthday: "07.01.1998", email: "s.lebedeva@company.ru", telegram: nil),
+        .init(id: 10000014, name: "Иван Петров", position: "iOS-разработчик", teamId: 20000005, managerId: 10000010, city: "Москва", birthday: "11.06.1995", email: "i.petrov@company.ru", telegram: "@telegram"),
+        .init(id: 10000015, name: "Мария Сидорова", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Санкт-Петербург", birthday: "23.09.1996", email: "m.sidorova@company.ru", telegram: "@telegram"),
+        .init(id: 10000016, name: "Артём Кузьмин", position: "iOS-разработчик", teamId: 20000005, managerId: 10000010, city: "Москва", birthday: "04.02.1994", email: "a.kuzmin@company.ru", telegram: "@telegram"),
+        .init(id: 10000017, name: "Дарья Фёдорова", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Казань", birthday: "16.11.1997", email: "d.fedorova@company.ru", telegram: "@telegram"),
+        .init(id: 10000018, name: "Никита Орлов", position: "iOS-разработчик", teamId: 20000005, managerId: 10000010, city: "Москва", birthday: "29.07.1993", email: "n.orlov@company.ru", telegram: "@telegram"),
+        .init(id: 10000019, name: "София Лебедева", position: "Android-разработчик", teamId: 20000005, managerId: 10000010, city: "Новосибирск", birthday: "07.01.1998", email: "s.lebedeva@company.ru", telegram: "@telegram"),
         
         // Backend-разработка
-        .init(id: 10000020, name: "Сергей Волков", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "02.03.1992", email: "s.volkov@company.ru", telegram: nil),
-        .init(id: 10000021, name: "Алина Морозова", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "18.08.1994", email: "a.morozova@company.ru", telegram: nil),
-        .init(id: 10000022, name: "Кирилл Новиков", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Санкт-Петербург", birthday: "25.05.1991", email: "k.novikov@company.ru", telegram: nil),
-        .init(id: 10000023, name: "Евгения Соколова", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "13.10.1996", email: "e.sokolova2@company.ru", telegram: nil),
-        .init(id: 10000024, name: "Максим Попов", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Казань", birthday: "09.12.1993", email: "m.popov@company.ru", telegram: nil),
-        .init(id: 10000025, name: "Виктория Егорова", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "21.04.1995", email: "v.egorova@company.ru", telegram: nil),
-        .init(id: 10000026, name: "Андрей Зайцев", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Екатеринбург", birthday: "06.07.1990", email: "a.zaitsev@company.ru", telegram: nil),
-        .init(id: 10000027, name: "Полина Ковалёва", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "15.09.1997", email: "p.kovaleva@company.ru", telegram: nil),
-        .init(id: 10000028, name: "Роман Семёнов", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "28.02.1992", email: "r.semenov@company.ru", telegram: nil),
+        .init(id: 10000020, name: "Сергей Волков", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "02.03.1992", email: "s.volkov@company.ru", telegram: "@telegram"),
+        .init(id: 10000021, name: "Алина Морозова", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "18.08.1994", email: "a.morozova@company.ru", telegram: "@telegram"),
+        .init(id: 10000022, name: "Кирилл Новиков", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Санкт-Петербург", birthday: "25.05.1991", email: "k.novikov@company.ru", telegram: "@telegram"),
+        .init(id: 10000023, name: "Евгения Соколова", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "13.10.1996", email: "e.sokolova2@company.ru", telegram: "@telegram"),
+        .init(id: 10000024, name: "Максим Попов", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Казань", birthday: "09.12.1993", email: "m.popov@company.ru", telegram: "@telegram"),
+        .init(id: 10000025, name: "Виктория Егорова", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "21.04.1995", email: "v.egorova@company.ru", telegram: "@telegram"),
+        .init(id: 10000026, name: "Андрей Зайцев", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Екатеринбург", birthday: "06.07.1990", email: "a.zaitsev@company.ru", telegram: "@telegram"),
+        .init(id: 10000027, name: "Полина Ковалёва", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "15.09.1997", email: "p.kovaleva@company.ru", telegram: "@telegram"),
+        .init(id: 10000028, name: "Роман Семёнов", position: "Backend-разработчик", teamId: 20000006, managerId: 10000011, city: "Москва", birthday: "28.02.1992", email: "r.semenov@company.ru", telegram: "@telegram"),
         
         // Frontend-разработка
-        .init(id: 10000029, name: "Анна Крылова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "03.06.1994", email: "a.krylova@company.ru", telegram: nil),
-        .init(id: 10000030, name: "Дмитрий Белов", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "19.11.1991", email: "d.belov@company.ru", telegram: nil),
-        .init(id: 10000031, name: "Елизавета Орлова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Санкт-Петербург", birthday: "27.03.1996", email: "e.orlova@company.ru", telegram: nil),
-        .init(id: 10000032, name: "Илья Макаров", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "08.08.1993", email: "i.makarov@company.ru", telegram: nil),
-        .init(id: 10000033, name: "Ксения Фролова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Казань", birthday: "14.01.1998", email: "k.frolova@company.ru", telegram: nil),
-        .init(id: 10000034, name: "Артём Никитин", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "22.05.1990", email: "a.nikitin@company.ru", telegram: nil),
-        .init(id: 10000035, name: "Мария Громова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Новосибирск", birthday: "30.09.1995", email: "m.gromova@company.ru", telegram: nil),
-        .init(id: 10000036, name: "Павел Соловьёв", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "11.12.1992", email: "p.solovyov@company.ru", telegram: nil),
-        .init(id: 10000037, name: "Алина Захарова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "05.04.1997", email: "a.zakharova@company.ru", telegram: nil),
-        .init(id: 10000038, name: "Никита Воробьёв", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Екатеринбург", birthday: "17.07.1994", email: "n.vorobyov@company.ru", telegram: nil),
-        .init(id: 10000039, name: "Дарья Медведева", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "26.10.1996", email: "d.medvedeva@company.ru", telegram: nil),
+        .init(id: 10000029, name: "Анна Крылова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "03.06.1994", email: "a.krylova@company.ru", telegram: "@telegram"),
+        .init(id: 10000030, name: "Дмитрий Белов", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "19.11.1991", email: "d.belov@company.ru", telegram: "@telegram"),
+        .init(id: 10000031, name: "Елизавета Орлова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Санкт-Петербург", birthday: "27.03.1996", email: "e.orlova@company.ru", telegram: "@telegram"),
+        .init(id: 10000032, name: "Илья Макаров", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "08.08.1993", email: "i.makarov@company.ru", telegram: "@telegram"),
+        .init(id: 10000033, name: "Ксения Фролова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Казань", birthday: "14.01.1998", email: "k.frolova@company.ru", telegram: "@telegram"),
+        .init(id: 10000034, name: "Артём Никитин", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "22.05.1990", email: "a.nikitin@company.ru", telegram: "@telegram"),
+        .init(id: 10000035, name: "Мария Громова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Новосибирск", birthday: "30.09.1995", email: "m.gromova@company.ru", telegram: "@telegram"),
+        .init(id: 10000036, name: "Павел Соловьёв", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "11.12.1992", email: "p.solovyov@company.ru", telegram: "@telegram"),
+        .init(id: 10000037, name: "Алина Захарова", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "05.04.1997", email: "a.zakharova@company.ru", telegram: "@telegram"),
+        .init(id: 10000038, name: "Никита Воробьёв", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Екатеринбург", birthday: "17.07.1994", email: "n.vorobyov@company.ru", telegram: "@telegram"),
+        .init(id: 10000039, name: "Дарья Медведева", position: "Frontend-разработчик", teamId: 20000007, managerId: 10000012, city: "Москва", birthday: "26.10.1996", email: "d.medvedeva@company.ru", telegram: "@telegram"),
         
         // Дизайн
-        .init(id: 10000040, name: "Софья Романова", position: "UI/UX-дизайнер", teamId: 20000008, managerId: 10000013, city: "Москва", birthday: "09.03.1995", email: "s.romanova@company.ru", telegram: nil),
-        .init(id: 10000041, name: "Александр Кузнецов", position: "Графический дизайнер", teamId: 20000008, managerId: 10000013, city: "Москва", birthday: "18.06.1991", email: "a.kuznetsov@company.ru", telegram: nil),
-        .init(id: 10000042, name: "Вероника Лебедева", position: "UI/UX-дизайнер", teamId: 20000008, managerId: 10000013, city: "Санкт-Петербург", birthday: "24.11.1996", email: "v.lebedeva@company.ru", telegram: nil),
-        .init(id: 10000043, name: "Михаил Соколов", position: "Дизайнер", teamId: 20000008, managerId: 10000013, city: "Москва", birthday: "02.02.1993", email: "m.sokolov@company.ru", telegram: nil),
-        .init(id: 10000044, name: "Анастасия Попова", position: "UI/UX-дизайнер", teamId: 20000008, managerId: 10000013, city: "Казань", birthday: "13.08.1997", email: "a.popova@company.ru", telegram: nil)
+        .init(id: 10000040, name: "Софья Романова", position: "UI/UX-дизайнер", teamId: 20000008, managerId: 10000013, city: "Москва", birthday: "09.03.1995", email: "s.romanova@company.ru", telegram: "@telegram"),
+        .init(id: 10000041, name: "Александр Кузнецов", position: "Графический дизайнер", teamId: 20000008, managerId: 10000013, city: "Москва", birthday: "18.06.1991", email: "a.kuznetsov@company.ru", telegram: "@telegram"),
+        .init(id: 10000042, name: "Вероника Лебедева", position: "UI/UX-дизайнер", teamId: 20000008, managerId: 10000013, city: "Санкт-Петербург", birthday: "24.11.1996", email: "v.lebedeva@company.ru", telegram: "@telegram"),
+        .init(id: 10000043, name: "Михаил Соколов", position: "Дизайнер", teamId: 20000008, managerId: 10000013, city: "Москва", birthday: "02.02.1993", email: "m.sokolov@company.ru", telegram: "@telegram"),
+        .init(id: 10000044, name: "Анастасия Попова", position: "UI/UX-дизайнер", teamId: 20000008, managerId: 10000013, city: "Казань", birthday: "13.08.1997", email: "a.popova@company.ru", telegram: "@telegram")
     ]
     
     // MARK: - Команды
@@ -188,7 +188,7 @@ enum MockData {
         city: "Казань",
         birthday: "16.11.1997",
         email: "d.fedorova@company.ru",
-        telegram: nil,
+        telegram: "@telegram",
         favoriteProjectIds:
             [50000001, 50000002, 50000005],
         missedDates: [

@@ -57,7 +57,7 @@ extension EmployeeView {
         VStack(alignment: .leading, spacing: 12) {
             infoRow(title: "Роль", value: store.employee.position)
             
-            // Команда
+            // Команда (кликабельная)
             if let team = store.employee.team {
                 Button {
                     store.dispatch(.teamTapped)
@@ -67,7 +67,7 @@ extension EmployeeView {
                 .buttonStyle(.plain)
             }
             
-            // Руководитель
+            // Руководитель (кликабельный)
             if let manager = store.employee.manager {
                 Button {
                     store.dispatch(.employeeTapped(manager))
@@ -77,10 +77,12 @@ extension EmployeeView {
                 .buttonStyle(.plain)
             }
             
+            // Город
             if let city = store.employee.city {
                 infoRow(title: "Город", value: city)
             }
             
+            // День рождения
             if let birthday = store.employee.birthday {
                 infoRow(title: "День рождения", value: birthday)
             }
@@ -91,6 +93,16 @@ extension EmployeeView {
                     store.dispatch(.emailTapped)
                 } label: {
                     infoRow(title: "Почта", value: email, isInteractive: true)
+                }
+                .buttonStyle(.plain)
+            }
+            
+            // Telegram (кликабельный)
+            if let tg = store.employee.tg {
+                Button {
+                    store.dispatch(.telegramTapped)
+                } label: {
+                    infoRow(title: "Telegram", value: tg, isInteractive: true)
                 }
                 .buttonStyle(.plain)
             }

@@ -41,25 +41,42 @@ final class EmployeeStore {
             } else {
                 router.profilePath.append(ProfileRoute.employee(employee))
             }
+            
         case .teamTapped:
             if let team = employee.team {
                 if tab == .employees {
                     router.employeesPath.append(TeamsEmployeesRoute.team(team))
                 } else {
-                    router.profilePath.append(ProfileRoute.employee(employee))
+                    router.profilePath.append(ProfileRoute.myTeam(team))
                 }
             }
+            
         case .emailTapped:
             if let email = employee.email {
-                self.openMail(email)
+                openMail(email)
+            }
+            
+        case .telegramTapped:
+            if let tg = employee.tg {
+                openTelegram(tg)
             }
         }
     }
-    
+}
+
+extension EmployeeStore {
     private func openMail(_ email: String) {
         let cleaned = email.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let url = URL(string: "mailto:\(cleaned)") else { return }
         UIApplication.shared.open(url)
     }
-    
+
+    private func openTelegram(_ username: String) {
+        let cleaned = username
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "@", with: "")
+        
+        guard let url = URL(string: "https://t.me/\(cleaned)") else { return }
+        UIApplication.shared.open(url)
+    }
 }

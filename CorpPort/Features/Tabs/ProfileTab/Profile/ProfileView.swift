@@ -152,11 +152,17 @@ extension ProfileView {
             if let location = userProfile.city {
                 infoRow(title: "Локация", value: location)
             }
+            
             if let birthday = userProfile.birthday {
                 infoRow(title: "День рождения", value: birthday)
             }
+            
             if let email = userProfile.email {
                 infoRow(title: "Почта", value: email)
+            }
+            
+            if let tg = userProfile.tg {
+                infoRow(title: "Telegram", value: tg)
             }
         }
     }
