@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1126B6403087659B00E30E81 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 1126B63F3087659B00E30E81 /* KeychainAccess */; };
+		1126B643308765F100E30E81 /* Get in Frameworks */ = {isa = PBXBuildFile; productRef = 1126B642308765F100E30E81 /* Get */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		1126B0C1307E2CD500E30E81 /* CorpPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorpPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1126B6403087659B00E30E81 /* KeychainAccess in Frameworks */,
+				1126B643308765F100E30E81 /* Get in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = CorpPort;
 			packageProductDependencies = (
+				1126B63F3087659B00E30E81 /* KeychainAccess */,
+				1126B642308765F100E30E81 /* Get */,
 			);
 			productName = CorpPort;
 			productReference = 1126B0C1307E2CD500E30E81 /* CorpPort.app */;
@@ -107,6 +116,10 @@
 			);
 			mainGroup = 1126B0B8307E2CD500E30E81;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1126B63E3087659B00E30E81 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				1126B641308765F100E30E81 /* XCRemoteSwiftPackageReference "Get" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1126B0C2307E2CD500E30E81 /* Products */;
 			projectDirPath = "";
@@ -347,6 +360,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1126B63E3087659B00E30E81 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		1126B641308765F100E30E81 /* XCRemoteSwiftPackageReference "Get" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Get";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1126B63F3087659B00E30E81 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1126B63E3087659B00E30E81 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		1126B642308765F100E30E81 /* Get */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1126B641308765F100E30E81 /* XCRemoteSwiftPackageReference "Get" */;
+			productName = Get;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1126B0B9307E2CD500E30E81 /* Project object */;
 }
