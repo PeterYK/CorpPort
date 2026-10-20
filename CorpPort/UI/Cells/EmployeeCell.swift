@@ -38,7 +38,7 @@ struct EmployeeCell: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 
-                Text("ivan@company.com")
+                Text(employee.email ?? " - ")
                     .font(.caption)
                     .foregroundStyle(.blue)
             }
