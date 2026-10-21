@@ -9,10 +9,10 @@ import SwiftUI
 
 @Observable
 final class LoginStore {
-    @ObservationIgnored private var dataService: DataService = ServiceLocator.shared.getService()
-    @ObservationIgnored private var networkService: NetworkService = ServiceLocator.shared.getService()
-    @ObservationIgnored private var keychainService: KeychainService = ServiceLocator.shared.getService()
-    
+    @ObservationIgnored private var dataService: DataService
+    @ObservationIgnored private var networkService: NetworkService
+    @ObservationIgnored private var keychainService: KeychainService
+
     private let appState: AppState
     
     var login = ""
@@ -28,9 +28,17 @@ final class LoginStore {
         }
         return version
     }
-    
-    init(appState: AppState) {
+  
+    init(
+        appState: AppState,
+        networkService: NetworkService = ServiceLocator.shared.getService(),
+        keychainService: KeychainService = ServiceLocator.shared.getService(),
+        dataService: DataService = ServiceLocator.shared.getService()
+    ) {
         self.appState = appState
+        self.networkService = networkService
+        self.keychainService = keychainService
+        self.dataService = dataService
     }
     
     func dispatch(_ action: LoginActions) {

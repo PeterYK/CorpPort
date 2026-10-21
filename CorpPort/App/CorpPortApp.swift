@@ -15,7 +15,7 @@ struct CorporatePortalApp: App {
     @State private var rootStore: RootStore
     
     init() {
-        Thread.sleep(forTimeInterval: 2.0)   // TODO: - задержка для отображения LaumchScreen
+        Thread.sleep(forTimeInterval: 1.0)   // TODO: - задержка для отображения LaumchScreen
         
         let appState = AppState()
         let appRouter = AppRouter()

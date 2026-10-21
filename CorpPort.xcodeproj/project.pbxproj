@@ -11,8 +11,19 @@
 		1126B643308765F100E30E81 /* Get in Frameworks */ = {isa = PBXBuildFile; productRef = 1126B642308765F100E30E81 /* Get */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1126B9AC3088B7E600E30E81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1126B0B9307E2CD500E30E81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1126B0C0307E2CD500E30E81;
+			remoteInfo = CorpPort;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1126B0C1307E2CD500E30E81 /* CorpPort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorpPort.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1126B9A83088B7E500E30E81 /* CorpPortTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CorpPortTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,6 +45,11 @@
 			path = CorpPort;
 			sourceTree = "<group>";
 		};
+		1126B9A93088B7E600E30E81 /* CorpPortTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CorpPortTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +62,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1126B9A53088B7E500E30E81 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				1126B0C3307E2CD500E30E81 /* CorpPort */,
+				1126B9A93088B7E600E30E81 /* CorpPortTests */,
 				1126B0C2307E2CD500E30E81 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				1126B0C1307E2CD500E30E81 /* CorpPort.app */,
+				1126B9A83088B7E500E30E81 /* CorpPortTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +117,29 @@
 			productReference = 1126B0C1307E2CD500E30E81 /* CorpPort.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1126B9A73088B7E500E30E81 /* CorpPortTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1126B9B03088B7E600E30E81 /* Build configuration list for PBXNativeTarget "CorpPortTests" */;
+			buildPhases = (
+				1126B9A43088B7E500E30E81 /* Sources */,
+				1126B9A53088B7E500E30E81 /* Frameworks */,
+				1126B9A63088B7E500E30E81 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1126B9AD3088B7E600E30E81 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1126B9A93088B7E600E30E81 /* CorpPortTests */,
+			);
+			name = CorpPortTests;
+			packageProductDependencies = (
+			);
+			productName = CorpPortTests;
+			productReference = 1126B9A83088B7E500E30E81 /* CorpPortTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -104,6 +152,10 @@
 				TargetAttributes = {
 					1126B0C0307E2CD500E30E81 = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					1126B9A73088B7E500E30E81 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 1126B0C0307E2CD500E30E81;
 					};
 				};
 			};
@@ -126,12 +178,20 @@
 			projectRoot = "";
 			targets = (
 				1126B0C0307E2CD500E30E81 /* CorpPort */,
+				1126B9A73088B7E500E30E81 /* CorpPortTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1126B0BF307E2CD500E30E81 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1126B9A63088B7E500E30E81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -148,7 +208,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1126B9A43088B7E500E30E81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1126B9AD3088B7E600E30E81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1126B0C0307E2CD500E30E81 /* CorpPort */;
+			targetProxy = 1126B9AC3088B7E600E30E81 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1126B0CC307E2CD700E30E81 /* Debug */ = {
@@ -340,6 +415,48 @@
 			};
 			name = Release;
 		};
+		1126B9AE3088B7E600E30E81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B92D6526R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.otus.peter.CorpPortTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CorpPort.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CorpPort";
+			};
+			name = Debug;
+		};
+		1126B9AF3088B7E600E30E81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B92D6526R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.otus.peter.CorpPortTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CorpPort.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CorpPort";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -357,6 +474,15 @@
 			buildConfigurations = (
 				1126B0CF307E2CD700E30E81 /* Debug */,
 				1126B0D0307E2CD700E30E81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1126B9B03088B7E600E30E81 /* Build configuration list for PBXNativeTarget "CorpPortTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1126B9AE3088B7E600E30E81 /* Debug */,
+				1126B9AF3088B7E600E30E81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
